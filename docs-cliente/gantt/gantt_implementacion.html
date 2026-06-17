@@ -760,9 +760,14 @@
         .sidebar.collapsed #sidebarToggle svg {
             transform: rotate(180deg);
         }
-        .sidebar.collapsed .menu-item .lbl,
-        .sidebar.collapsed .sub-menu,
+        .sidebar-brand .logo-full {
+            display: block;
+        }
         .sidebar-brand .logo-icon {
+            display: none;
+        }
+        .sidebar.collapsed .menu-item .lbl,
+        .sidebar.collapsed .sub-menu {
             display: none;
         }
         .sidebar.collapsed .sidebar-brand .logo-full {
@@ -774,6 +779,11 @@
         .sidebar.collapsed .menu-item {
             justify-content: center;
             gap: 0;
+        }
+        .sidebar-menu .menu-item svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
         }
         .sidebar-brand {
             height: 85px;
@@ -839,8 +849,8 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-brand" style="padding: 20px 24px 18px; border-bottom: 3px solid var(--green); display: flex; justify-content: center; align-items: center;">
-            <img src="logo.png" alt="TIDEO Tech & Strategy" class="logo-full" style="width: 140px; height: auto; display: block;">
-            <img src="logo-icon.png" alt="TIDEO" class="logo-icon" style="width: 28px; height: auto; display: block;">
+            <img src="logo.png" alt="TIDEO Tech & Strategy" class="logo-full" style="width: 140px; height: auto;">
+            <img src="logo-icon.png" alt="TIDEO" class="logo-icon" style="width: 28px; height: auto;">
         </div>
         <ul class="sidebar-menu">
             <li>

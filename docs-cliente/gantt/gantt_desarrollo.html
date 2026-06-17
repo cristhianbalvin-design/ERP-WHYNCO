@@ -742,9 +742,14 @@
         .sidebar.collapsed #sidebarToggle svg {
             transform: rotate(180deg);
         }
-        .sidebar.collapsed .menu-item .lbl,
-        .sidebar.collapsed .sub-menu,
+        .sidebar-brand .logo-full {
+            display: block;
+        }
         .sidebar-brand .logo-icon {
+            display: none;
+        }
+        .sidebar.collapsed .menu-item .lbl,
+        .sidebar.collapsed .sub-menu {
             display: none;
         }
         .sidebar.collapsed .sidebar-brand .logo-full {
@@ -756,6 +761,11 @@
         .sidebar.collapsed .menu-item {
             justify-content: center;
             gap: 0;
+        }
+        .sidebar-menu .menu-item svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
         }
         .sidebar-brand {
             height: 85px;
