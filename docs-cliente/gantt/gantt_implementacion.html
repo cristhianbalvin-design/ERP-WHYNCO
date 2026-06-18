@@ -956,7 +956,9 @@
                 <thead>
                     <!-- ROW 1: group headers -->
                     <tr class="hdr-top">
-                        <th class="th-fixed" style="min-width:34px" rowspan="2"></th>
+                        <th class="th-fixed js-toggle-all" style="min-width:34px; text-align:center; cursor:pointer;" rowspan="2"  title="Expandir/Contraer Todo">
+                            <span id="toggleAllIcon" style="font-size:16px; font-weight:bold; display:inline-block; transition:transform 0.15s; user-select:none;">▾</span>
+                        </th>
                         <th class="th-fixed" style="min-width:220px" rowspan="2">Actividad</th>
                         <th class="th-fixed" style="width:64px" rowspan="2">Tipo</th>
                         <th class="g-adm" colspan="2">ERP ADMINISTRATIVO — RRHH</th>
@@ -1298,10 +1300,61 @@
         const collapsedSections = new Set();
         let currentFilter = 'ALL';
 
+        
+        
+        let allCollapsed = false;
+        function toggleAllSections(e) {
+            allCollapsed = !allCollapsed;
+            
+            const table = e.currentTarget.closest('table');
+            const icon = e.currentTarget.querySelector('span');
+            if(icon) icon.style.transform = allCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)';
+            
+            Object.keys(SECTIONS).forEach(key => {
+                if (allCollapsed) collapsedSections.add(key);
+                else collapsedSections.delete(key);
+            });
+            
+            table.querySelectorAll('tr.row-section, tr.row-sec').forEach(tr => {
+                tr.classList.toggle('collapsed', allCollapsed);
+            });
+            
+            applyFilter(currentFilter);
+        }
+
+        
+
+        
+        function attachToggleToTable(tbody) {
+            setTimeout(() => {
+                if (!tbody) return;
+                const table = tbody.closest('table');
+                if (!table) return;
+                const btn = table.querySelector('.js-toggle-all');
+                if (btn && !btn.dataset.listenerAttached) {
+                    btn.addEventListener('click', toggleAllSections);
+                    btn.dataset.listenerAttached = 'true';
+                }
+            }, 50);
+        }
+
         function buildTable() {
             const tbody = document.getElementById('ganttBody');
             tbody.innerHTML = '';
+            attachToggleToTable(tbody);
             let currentSection = null;
+            const sectionWeeks = {};
+            ROWS.forEach(row => {
+                if (row.section) {
+                    currentSection = row.section;
+                    if (!sectionWeeks[currentSection]) sectionWeeks[currentSection] = [];
+                } else if (currentSection && row.weeks) {
+                    row.weeks.forEach((w, i) => {
+                        if (w) sectionWeeks[currentSection][i] = 1;
+                    });
+                }
+            });
+            currentSection = null;
             ROWS.forEach(row => {
                 if (row.section) {
                     currentSection = row.section;
@@ -1309,7 +1362,22 @@
                     const tr = document.createElement('tr');
                     tr.className = 'row-sec ' + (sec.cls || '');
                     tr.dataset.section = row.section;
-                    tr.innerHTML = `<td colspan="11"><span class="sec-toggle">▾</span>${sec.label}</td>`;
+                    const tdLabel = document.createElement('td');
+                    tdLabel.colSpan = 3;
+                    tdLabel.innerHTML = `<span class="sec-toggle">▾</span>${sec.label}`;
+                    tr.appendChild(tdLabel);
+                    const sWeeks = sectionWeeks[row.section] || [];
+                    for (let wi = 0; wi < 8; wi++) {
+                        const td = document.createElement('td');
+                        td.className = 'c-wk ' + WK_CLS[wi];
+                        if (sWeeks[wi]) {
+                            const bar = document.createElement('span');
+                            bar.className = 'bar bar-INTERN';
+                            bar.style.opacity = '0.5';
+                            td.appendChild(bar);
+                        }
+                        tr.appendChild(td);
+                    }
                     tr.addEventListener('click', () => toggleSection(row.section));
                     tbody.appendChild(tr);
                     return;
@@ -1421,6 +1489,7 @@
         }
 
         buildTable();
+        
 
         // ── SIDEBAR TOGGLE ───────────────────────────────────────────────────────
         const sidebarEl = document.querySelector('.sidebar');

@@ -1,1089 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gantt de Desarrollo — DIFESMAQ · TIDEO OPERA</title>
-    <style>
-        :root {
-            --navy: #1A2B4A;
-            --navy-mid: #243554;
-            --navy-lite: #2D3F63;
-            --green: #4CAF50;
-            --green-lt: #E8F5E9;
-            --orange: #FF9800;
-            --orange-lt: #FFF3E0;
-            --cyan: #00BCD4;
-            --cyan-lt: #E0F7FA;
-            --purple: #9C27B0;
-            --purple-lt: #F3E5F5;
-            --red: #E53935;
-            --red-lt: #FFEBEE;
-            --gray-bg: #F4F7FB;
-            --gray-mid: #E0E6EF;
-            --gray-dark: #607D8B;
-            --text: #1A2B4A;
-            --text-mid: #607D8B;
-            --white: #FFFFFF;
-            --bar-adm: #1A2B4A;
-            --bar-op: #00BCD4;
-            --bar-fix: #E53935;
-            --bar-audit: #9C27B0;
-            --bar-hito: #FF9800;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: var(--gray-bg);
-            color: var(--text);
-            min-height: 100vh;
-            padding-left: 250px;
-        }
-
-        /* HEADER */
-        .page-header {
-            background: var(--navy);
-            border-bottom: 3px solid var(--orange);
-            height: 85px;
-            display: flex;
-            align-items: center;
-        }
-
-        .header-inner {
-            width: 100%;
-            max-width: 1700px;
-            margin: 0 auto;
-            padding: 0 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .brand-name {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--green);
-            letter-spacing: -0.5px;
-        }
-
-        .brand-sub {
-            font-size: 11px;
-            color: #7A9CC0;
-            margin-left: 4px;
-        }
-
-        .header-title {
-            flex: 1;
-            text-align: center;
-        }
-
-        .header-title h1 {
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .header-title p {
-            font-size: 12px;
-            color: #7A9CC0;
-            margin-top: 3px;
-        }
-
-        .header-meta {
-            text-align: right;
-            font-size: 11px;
-            color: #7A9CC0;
-            line-height: 1.6;
-        }
-
-        /* CONTROLS */
-        .controls-bar {
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-mid);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
-
-        .controls-inner {
-            max-width: 1700px;
-            margin: 0 auto;
-            padding: 10px 28px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .controls-inner label {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--navy);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .filter-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 5px 12px;
-            border-radius: 20px;
-            border: 1.5px solid transparent;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all .15s;
-            background: var(--gray-bg);
-            color: var(--text-mid);
-        }
-
-        .filter-btn .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .filter-btn.active {
-            color: var(--white);
-        }
-
-        .filter-btn[data-type="ALL"].active {
-            background: var(--navy);
-            border-color: var(--navy);
-        }
-
-        .filter-btn[data-type="ADM"].active {
-            background: var(--bar-adm);
-            border-color: var(--bar-adm);
-        }
-
-        .filter-btn[data-type="OP"].active {
-            background: var(--bar-op);
-            border-color: var(--bar-op);
-        }
-
-        .filter-btn[data-type="FIX"].active {
-            background: var(--bar-fix);
-            border-color: var(--bar-fix);
-        }
-
-        .filter-btn[data-type="AUDIT"].active {
-            background: var(--bar-audit);
-            border-color: var(--bar-audit);
-        }
-
-        .filter-btn[data-type="HITO"].active {
-            background: var(--bar-hito);
-            border-color: var(--bar-hito);
-        }
-
-        .filter-btn:not(.active):hover {
-            border-color: var(--gray-dark);
-        }
-
-        .sep {
-            width: 1px;
-            height: 24px;
-            background: var(--gray-mid);
-        }
-
-        .stats-pill {
-            font-size: 11px;
-            color: var(--text-mid);
-            background: var(--gray-bg);
-            padding: 4px 10px;
-            border-radius: 20px;
-            border: 1px solid var(--gray-mid);
-        }
-
-        .stats-pill strong {
-            color: var(--navy);
-        }
-
-        /* MAIN */
-        .gantt-wrapper {
-            max-width: 1700px;
-            margin: 20px auto;
-            padding: 0 28px 40px;
-        }
-
-        /* SUMMARY CARDS */
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .summary-card {
-            background: var(--white);
-            border-radius: 10px;
-            padding: 14px 16px;
-            border: 1px solid var(--gray-mid);
-            text-align: center;
-        }
-
-        .summary-card .val {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--navy);
-            letter-spacing: -1px;
-            line-height: 1;
-        }
-
-        .summary-card .lbl {
-            font-size: 10.5px;
-            color: var(--gray-dark);
-            margin-top: 4px;
-            font-weight: 500;
-        }
-
-        .c-green .val {
-            color: var(--green);
-        }
-
-        .c-cyan .val {
-            color: var(--cyan);
-        }
-
-        .c-orange .val {
-            color: var(--orange);
-        }
-
-        .c-purple .val {
-            color: var(--purple);
-        }
-
-        .c-red .val {
-            color: var(--red);
-        }
-
-        /* GANTT */
-        .gantt-scroll {
-            overflow-x: auto;
-            border-radius: 10px;
-            box-shadow: 0 2px 16px rgba(26, 43, 74, 0.08);
-            background: var(--white);
-        }
-
-        .gantt-table {
-            min-width: 1000px;
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        /* THEAD — single consistent structure */
-        .gantt-table thead tr.row-groups th {
-            color: var(--white);
-            font-size: 11px;
-            font-weight: 700;
-            text-align: center;
-            padding: 9px 6px;
-            border-right: 1px solid rgba(255, 255, 255, 0.15);
-            white-space: nowrap;
-            letter-spacing: 0.3px;
-        }
-
-        .gantt-table thead tr.row-groups th.th-info {
-            background: var(--navy);
-            text-align: left;
-            padding-left: 14px;
-        }
-
-        .gantt-table thead tr.row-groups th.th-s1,
-        .gantt-table thead tr.row-groups th.th-s2,
-        .gantt-table thead tr.row-groups th.th-s3,
-        .gantt-table thead tr.row-groups th.th-s4,
-        .gantt-table thead tr.row-groups th.th-s5,
-        .gantt-table thead tr.row-groups th.th-s6 {
-            background: var(--navy);
-        }
-
-        .gantt-table thead tr.row-dates th {
-            background: var(--navy-mid);
-            color: #9AB8D8;
-            font-size: 10px;
-            font-weight: 600;
-            text-align: center;
-            padding: 6px 4px;
-            border-right: 1px solid var(--navy-lite);
-            border-bottom: 2px solid var(--gray-mid);
-            white-space: nowrap;
-        }
-
-        .gantt-table thead tr.row-dates th.th-info-sub {
-            text-align: left;
-            padding-left: 14px;
-            color: var(--white);
-        }
-
-        .gantt-table thead tr.row-dates th.wk-s1 {
-            background: #FF5252;
-            color: #1A2B4A;
-        }
-
-        .gantt-table thead tr.row-dates th.wk-s2 {
-            background: #FFC107;
-            color: #1A2B4A;
-        }
-
-        .gantt-table thead tr.row-dates th.wk-s3 {
-            background: #00E676;
-            color: #1A2B4A;
-        }
-
-        .gantt-table thead tr.row-dates th.wk-s4 {
-            background: #00BCD4;
-            color: #1A2B4A;
-        }
-
-        .gantt-table thead tr.row-dates th.wk-s5 {
-            background: #E040FB;
-            color: #1A2B4A;
-        }
-
-        .gantt-table thead tr.row-dates th.wk-s6 {
-            background: #FF5252;
-            color: #1A2B4A;
-        }
-
-        /* SECTION ROWS */
-        .gantt-table tbody tr.row-section td {
-            background: var(--gray-bg);
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--navy);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            padding: 6px 14px;
-            border-top: 2px solid var(--gray-mid);
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .gantt-table tbody tr.row-section:hover td {
-            background: var(--gray-mid);
-        }
-
-        .sec-toggle {
-            display: inline-block;
-            width: 16px;
-            font-size: 14px;
-            font-weight: 900;
-            margin-right: 4px;
-            transition: transform .15s;
-        }
-
-        .row-section.collapsed .sec-toggle {
-            transform: rotate(-90deg);
-        }
-
-        .gantt-table tbody tr.row-section td:first-child {
-            border-left: 3px solid var(--green);
-        }
-
-        .gantt-table tbody tr.row-section.sec-op td:first-child {
-            border-left-color: var(--cyan);
-        }
-
-        .gantt-table tbody tr.row-section.sec-fix td:first-child {
-            border-left-color: var(--red);
-        }
-
-        .gantt-table tbody tr.row-section.sec-audit td:first-child {
-            border-left-color: var(--purple);
-        }
-
-        /* ACTIVITY ROWS */
-        .gantt-table tbody tr.row-activity td {
-            border-bottom: 1px solid #F0F4F8;
-            vertical-align: middle;
-            height: 34px;
-        }
-
-        .gantt-table tbody tr.row-activity:hover td {
-            background: #F8FAFD;
-        }
-
-        .gantt-table tbody tr.row-hidden {
-            display: none;
-        }
-
-        .gantt-table tbody tr.row-hito td {
-            background: var(--orange-lt);
-            border-bottom: 1px solid #FFE0B2;
-            height: 34px;
-            vertical-align: middle;
-        }
-
-        /* CELLS */
-        .cell-num {
-            width: 36px;
-            text-align: center;
-            font-size: 10px;
-            color: var(--gray-dark);
-            font-weight: 600;
-            padding: 0 4px;
-            border-right: 1px solid var(--gray-mid);
-        }
-
-        .cell-label {
-            min-width: 290px;
-            max-width: 290px;
-            width: 290px;
-            padding: 0 8px 0 12px;
-            font-size: 11.5px;
-            color: var(--text);
-            border-right: 1px solid var(--gray-mid);
-            line-height: 1.35;
-            white-space: normal;
-            word-break: break-word;
-        }
-
-        .cell-label.hito-label {
-            font-weight: 700;
-            color: var(--orange);
-            font-size: 11px;
-        }
-
-        .cell-type {
-            width: 68px;
-            text-align: center;
-            padding: 0 4px;
-            border-right: 2px solid var(--gray-mid);
-        }
-
-        .type-badge {
-            display: inline-block;
-            font-size: 9px;
-            font-weight: 700;
-            padding: 2px 5px;
-            border-radius: 4px;
-            letter-spacing: 0.4px;
-        }
-
-        .type-ADM {
-            background: #E8EEF7;
-            color: var(--navy);
-        }
-
-        .type-OP {
-            background: var(--cyan-lt);
-            color: #00838F;
-        }
-
-        .type-FIX {
-            background: var(--red-lt);
-            color: #B71C1C;
-        }
-
-        .type-AUDIT {
-            background: var(--purple-lt);
-            color: #7B1FA2;
-        }
-
-        .cell-week {
-            width: 110px;
-            text-align: center;
-            padding: 4px 6px;
-            border-right: 1px solid var(--gray-mid);
-        }
-
-        .cell-week.wk-s1 {
-            background: #F8FAFF;
-        }
-
-        .cell-week.wk-s2 {
-            background: #F0FAFA;
-        }
-
-        .cell-week.wk-s3 {
-            background: #FAF8FF;
-        }
-
-        .cell-week.wk-s4 {
-            background: #FFF8F8;
-        }
-
-        .cell-week.wk-s5 {
-            background: #FFFAF5;
-        }
-
-        .cell-week.wk-s6 {
-            background: #F0FFF4;
-        }
-
-        /* BARS */
-        .bar {
-            display: block;
-            height: 18px;
-            border-radius: 4px;
-            margin: 0 auto;
-            width: 86%;
-            transition: opacity .15s, transform .1s;
-            cursor: pointer;
-        }
-
-        .bar:hover {
-            opacity: .82;
-            transform: scaleY(1.1);
-        }
-
-        .bar-ADM {
-            background: var(--bar-adm);
-        }
-
-        .bar-OP {
-            background: var(--bar-op);
-        }
-
-        .bar-FIX {
-            background: var(--bar-fix);
-        }
-
-        .bar-AUDIT {
-            background: var(--bar-audit);
-        }
-
-        .bar-HITO {
-            background: var(--bar-hito);
-            width: 20px;
-            height: 20px;
-            transform: rotate(45deg);
-            border-radius: 3px;
-            border: 2px solid #E65100;
-            margin: 0 auto;
-        }
-
-        /* TOOLTIP */
-        .tooltip {
-            position: fixed;
-            background: var(--navy);
-            color: var(--white);
-            font-size: 11.5px;
-            padding: 8px 12px;
-            border-radius: 7px;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity .15s;
-            z-index: 9999;
-            max-width: 300px;
-            line-height: 1.5;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-        }
-
-        .tooltip.visible {
-            opacity: 1;
-        }
-
-        .tooltip-type {
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            opacity: .7;
-            text-transform: uppercase;
-            margin-bottom: 3px;
-        }
-
-        .tooltip-name {
-            font-weight: 600;
-        }
-
-        /* LEGEND */
-        .legend {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: wrap;
-            margin-top: 16px;
-            padding: 12px 16px;
-            background: var(--white);
-            border-radius: 8px;
-            border: 1px solid var(--gray-mid);
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 11px;
-            color: var(--text-mid);
-        }
-
-        .legend-bar {
-            width: 28px;
-            height: 12px;
-            border-radius: 3px;
-            flex-shrink: 0;
-        }
-
-        .legend-diamond {
-            width: 12px;
-            height: 12px;
-            border-radius: 2px;
-            transform: rotate(45deg);
-            flex-shrink: 0;
-            background: var(--bar-hito);
-        }
-
-        /* WEEK SUMMARY TABLE */
-        .week-summary {
-            background: var(--white);
-            border-radius: 10px;
-            border: 1px solid var(--gray-mid);
-            overflow: hidden;
-            margin-top: 16px;
-        }
-
-        .week-summary table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 11.5px;
-        }
-
-        .week-summary th {
-            background: var(--navy);
-            color: var(--white);
-            padding: 8px 12px;
-            text-align: center;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-        }
-
-        .week-summary th:first-child,
-        .week-summary th:nth-child(2) {
-            text-align: left;
-        }
-
-        .week-summary td {
-            padding: 7px 12px;
-            text-align: center;
-            border-bottom: 1px solid var(--gray-mid);
-            color: var(--text-mid);
-        }
-
-        .week-summary td:first-child {
-            text-align: left;
-            font-weight: 600;
-            color: var(--navy);
-        }
-
-        .week-summary td:nth-child(2) {
-            text-align: left;
-            font-size: 10.5px;
-        }
-
-        .week-summary tr:last-child td {
-            border-bottom: none;
-            background: var(--gray-bg);
-            font-weight: 700;
-            color: var(--navy);
-        }
-
-        .footer-bar {
-            background: var(--navy);
-            color: #7A9CC0;
-            text-align: center;
-            font-size: 11px;
-            padding: 14px;
-            margin-top: 32px;
-        }
-
-        .footer-bar strong {
-            color: var(--white);
-        }
-
-        /* ── SIDEBAR ── */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 100vh;
-            background: var(--navy);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            transition: width .2s ease;
-        }
-        .sidebar.collapsed {
-            width: 64px;
-        }
-        body {
-            transition: padding-left .2s ease;
-        }
-        body.sidebar-collapsed {
-            padding-left: 64px;
-        }
-        .sidebar-toggle-btn {
-            width: 100%;
-            background: none;
-            border: none;
-            color: inherit;
-            font: inherit;
-            text-align: left;
-        }
-        #sidebarToggle svg {
-            transition: transform .2s ease;
-            flex-shrink: 0;
-        }
-        .sidebar.collapsed #sidebarToggle svg {
-            transform: rotate(180deg);
-        }
-        .sidebar-brand .logo-full {
-            display: block;
-        }
-        .sidebar-brand .logo-icon {
-            display: none;
-        }
-        .sidebar.collapsed .menu-item .lbl,
-        .sidebar.collapsed .sub-menu {
-            display: none;
-        }
-        .sidebar.collapsed .sidebar-brand .logo-full {
-            display: none;
-        }
-        .sidebar.collapsed .sidebar-brand .logo-icon {
-            display: block;
-        }
-        .sidebar.collapsed .menu-item {
-            justify-content: center;
-            gap: 0;
-        }
-        .sidebar-menu .menu-item svg {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-        }
-        .sidebar-brand {
-            height: 85px;
-            padding: 0 24px;
-            border-bottom: 3px solid var(--orange);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .sidebar-brand .highlight {
-            color: var(--green);
-        }
-        .sidebar-menu {
-            list-style: none;
-            padding: 20px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 14px;
-            color: #9AB8D8;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-        .menu-item:hover, .menu-item.active {
-            background: var(--navy-lite);
-            color: var(--white);
-        }
-        .sub-menu {
-            list-style: none;
-            padding: 4px 0 4px 34px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .sub-menu-item {
-            display: block;
-            padding: 8px 12px;
-            color: #7A9CC0;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 500;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-        .sub-menu-item:hover, .sub-menu-item.active {
-            color: var(--white);
-            background: rgba(255,255,255,0.05);
-        }
-    </style>
-</head>
-
-<body>
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <div class="sidebar-brand" style="padding: 20px 24px 18px; border-bottom: 3px solid var(--orange); display: flex; justify-content: center; align-items: center;">
-            <a href="https://www.tideo.tech/" target="_blank" rel="noopener" style="display: flex; align-items: center;">
-                <img src="logo.png" alt="TIDEO Tech & Strategy" class="logo-full" style="width: 140px; height: auto;">
-                <img src="logo-icon.png" alt="TIDEO" class="logo-icon" style="width: 28px; height: auto;">
-            </a>
-        </div>
-        <ul class="sidebar-menu">
-            <li>
-                <button class="menu-item sidebar-toggle-btn" id="sidebarToggle" aria-label="Plegar/desplegar menú" title="Plegar/desplegar menú">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                    <span class="lbl">Plegar menú</span>
-                </button>
-            </li>
-            <li>
-                <a href="#" class="menu-item">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                    <span class="lbl">Accesos</span>
-                </a>
-            </li>
-            <li class="menu-group">
-                <div class="menu-item active">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
-                    <span class="lbl">Gantt</span>
-                </div>
-                <ul class="sub-menu">
-                    <li><a href="gantt_desarrollo.html" class="sub-menu-item active">Desarrollo</a></li>
-                    <li><a href="gantt_implementacion.html" class="sub-menu-item">Implementación</a></li>
-                </ul>
-            </li>
-        </ul>
-    </aside>
-
-    <header class="page-header">
-        <div class="header-inner">
-            <div class="header-title">
-                <h1>Gantt de Desarrollo — TIDEO OPERA</h1>
-                <p>Cliente: <strong style="color:#fff">DIFESMAQ</strong> &nbsp;·&nbsp; 04 de Mayo → 14 de Junio 2026
-                    &nbsp;·&nbsp; 6 semanas · 139 actividades</p>
-            </div>
-            <div class="header-meta">
-                <div>Emitido: 17 Jun 2026</div>
-                <div>cristhian@tideo.tech</div>
-            </div>
-        </div>
-    </header>
-
-    <div class="controls-bar">
-        <div class="controls-inner">
-            <label>Filtrar:</label>
-            <button class="filter-btn active" data-type="ALL"><span class="dot"
-                    style="background:var(--navy)"></span>Todas</button>
-            <button class="filter-btn" data-type="ADM"><span class="dot" style="background:var(--bar-adm)"></span>ERP
-                Administrativo</button>
-            <button class="filter-btn" data-type="OP"><span class="dot" style="background:var(--bar-op)"></span>ERP
-                Operativo</button>
-            <button class="filter-btn" data-type="FIX"><span class="dot"
-                    style="background:var(--bar-fix)"></span>Correcciones</button>
-            <button class="filter-btn" data-type="AUDIT"><span class="dot"
-                    style="background:var(--bar-audit)"></span>Auditorías</button>
-            <button class="filter-btn" data-type="HITO"><span class="dot"
-                    style="background:var(--bar-hito)"></span>Hitos</button>
-            <div class="sep"></div>
-            <span class="stats-pill" id="stats-pill"><strong>139</strong> de 139 actividades</span>
-        </div>
-    </div>
-
-    <main class="gantt-wrapper">
-
-        <div class="summary-grid">
-            <div class="summary-card">
-                <div class="val">6</div>
-                <div class="lbl">Semanas de desarrollo</div>
-            </div>
-            <div class="summary-card c-green">
-                <div class="val">139</div>
-                <div class="lbl">Actividades totales</div>
-            </div>
-            <div class="summary-card c-cyan">
-                <div class="val">~74</div>
-                <div class="lbl">Módulos ERP Administrativo</div>
-            </div>
-            <div class="summary-card">
-                <div class="val">48</div>
-                <div class="lbl">Módulos ERP Operativo</div>
-            </div>
-            <div class="summary-card c-orange">
-                <div class="val">253</div>
-                <div class="lbl">Tablas de base de datos</div>
-            </div>
-            <div class="summary-card c-red">
-                <div class="val">5</div>
-                <div class="lbl">Hitos de cierre</div>
-            </div>
-            <div class="summary-card c-purple">
-                <div class="val">5</div>
-                <div class="lbl">Fases ERP Operativo</div>
-            </div>
-        </div>
-
-        <div class="gantt-scroll">
-            <table class="gantt-table" id="ganttTable">
-                <thead>
-                    <!-- ROW 1: group labels spanning weeks -->
-                    <tr class="row-groups">
-                        <th class="th-info js-toggle-all" style="min-width:36px; text-align:center; cursor:pointer;" rowspan="2"  title="Expandir/Contraer Todo">
-                            <span id="toggleAllIcon" style="font-size:16px; font-weight:bold; display:inline-block; transition:transform 0.15s; user-select:none;">▾</span>
-                        </th>
-                        <th class="th-info" style="min-width:220px" rowspan="2">Actividad</th>
-                        <th class="th-info" style="width:68px" rowspan="2">Tipo</th>
-                        <th class="th-s1">SEMANA 1</th>
-                        <th class="th-s2">SEMANA 2</th>
-                        <th class="th-s3">SEMANA 3</th>
-                        <th class="th-s4">SEMANA 4</th>
-                        <th class="th-s5">SEMANA 5</th>
-                        <th class="th-s6">SEMANA 6</th>
-                    </tr>
-                    <!-- ROW 2: date labels -->
-                    <tr class="row-dates">
-                        <th class="wk-s1" style="min-width:110px">04–10 May<br><small>Base · CRM · Finanzas</small></th>
-                        <th class="wk-s2" style="min-width:110px">11–17 May<br><small>Roles · CRM Real · API</small>
-                        </th>
-                        <th class="wk-s3" style="min-width:110px">18–24 May<br><small>Nómina · RRHH Core</small></th>
-                        <th class="wk-s4" style="min-width:110px">25–31 May<br><small>Compras · WMS · Op. F1</small>
-                        </th>
-                        <th class="wk-s5" style="min-width:110px">01–07 Jun<br><small>RRHH Olas · App Móvil · Op.
-                                F2–4</small></th>
-                        <th class="wk-s6" style="min-width:110px">08–14 Jun<br><small>Nómina Final · Op. F5 ·
-                                Validación</small></th>
-                    </tr>
-                </thead>
-                <tbody id="ganttBody"></tbody>
-            </table>
-        </div>
-
-        <div class="legend">
-            <strong style="font-size:11px;color:var(--navy)">Leyenda:</strong>
-            <div class="legend-item">
-                <div class="legend-bar" style="background:var(--bar-adm)"></div>ERP Administrativo
-            </div>
-            <div class="legend-item">
-                <div class="legend-bar" style="background:var(--bar-op)"></div>ERP Operativo
-            </div>
-            <div class="legend-item">
-                <div class="legend-bar" style="background:var(--bar-fix)"></div>Corrección técnica
-            </div>
-            <div class="legend-item">
-                <div class="legend-bar" style="background:var(--bar-audit)"></div>Auditoría / Documentación
-            </div>
-            <div class="legend-item">
-                <div class="legend-diamond"></div>Hito de cierre
-            </div>
-        </div>
-
-        <div class="week-summary">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Semana</th>
-                        <th>Fechas y foco</th>
-                        <th>ERP Adm.</th>
-                        <th>ERP Op.</th>
-                        <th>Correc.</th>
-                        <th>Auditoría</th>
-                        <th>Hitos</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>S1</td>
-                        <td>04–10 May · Base del sistema, CRM, Finanzas fundacionales</td>
-                        <td>18</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>1</td>
-                        <td>19</td>
-                    </tr>
-                    <tr>
-                        <td>S2</td>
-                        <td>11–17 May · Roles jerárquicos, CRM persistente, API Keys, RRHH base</td>
-                        <td>14</td>
-                        <td>—</td>
-                        <td>2</td>
-                        <td>—</td>
-                        <td>1</td>
-                        <td>17</td>
-                    </tr>
-                    <tr>
-                        <td>S3</td>
-                        <td>18–24 May · Motor de nómina Perú, Evaluación Desempeño, Cese, Tareo</td>
-                        <td>14</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>1</td>
-                        <td>15</td>
-                    </tr>
-                    <tr>
-                        <td>S4</td>
-                        <td>25–31 May · Compras E2E, Inventario, Transporte + ERP Operativo Fase 1</td>
-                        <td>17</td>
-                        <td>11</td>
-                        <td>3</td>
-                        <td>—</td>
-                        <td>1</td>
-                        <td>32</td>
-                    </tr>
-                    <tr>
-                        <td>S5</td>
-                        <td>01–07 Jun · RRHH Olas 2–5, Biométrico, App Móvil + ERP Operativo Fases 2–4</td>
-                        <td>17</td>
-                        <td>16</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>33</td>
-                    </tr>
-                    <tr>
-                        <td>S6</td>
-                        <td>08–14 Jun · Nómina Final, Contratos digitales + ERP Operativo Fase 5 + Validación</td>
-                        <td>9</td>
-                        <td>8</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>1</td>
-                        <td>23</td>
-                    </tr>
-                    <tr>
-                        <td>TOTAL</td>
-                        <td>04 May – 14 Jun 2026</td>
-                        <td>89</td>
-                        <td>35</td>
-                        <td>7</td>
-                        <td>3</td>
-                        <td>5</td>
-                        <td>139</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
-
-    <div class="footer-bar">
-        Preparado por <strong>TIDEO Tech &amp; Strategy</strong> &nbsp;·&nbsp; cristhian@tideo.tech &nbsp;·&nbsp; 919
-        102 556 &nbsp;·&nbsp; Cliente: <strong>DIFESMAQ</strong> &nbsp;·&nbsp; Período: 04 May – 14 Jun 2026
-    </div>
-
-    <div class="tooltip" id="tooltip">
-        <div class="tooltip-type" id="tt-type"></div>
-        <div class="tooltip-name" id="tt-name"></div>
-    </div>
-
-    <script>
+        function switchView(viewName) {
+            document.getElementById('nav-des').classList.remove('active');
+            document.getElementById('nav-imp').classList.remove('active');
+            
+            if(viewName === 'desarrollo') document.getElementById('nav-des').classList.add('active');
+            if(viewName === 'implementacion') document.getElementById('nav-imp').classList.add('active');
+            
+            document.getElementById('view-desarrollo').classList.remove('active');
+            document.getElementById('view-implementacion').classList.remove('active');
+            
+            document.getElementById('view-' + viewName).classList.add('active');
+            
+            const titleEl = document.getElementById('main-title');
+            const subEl = document.getElementById('main-subtitle');
+            
+            if(viewName === 'desarrollo') {
+                titleEl.textContent = 'Gantt de Desarrollo — TIDEO OPERA';
+                subEl.textContent = 'Cliente: DIFESMAQ · 04 de Mayo – 14 de Junio 2026 · 6 semanas · 139 actividades';
+                if (window.renderGanttDev) window.renderGanttDev(); 
+            } else {
+                titleEl.textContent = 'Gantt de Implementación — TIDEO OPERA';
+                subEl.textContent = 'Cliente: DIFESMAQ · 15 de Junio – 9 de Agosto 2026 · 8 semanas · 123 actividades';
+                if (window.renderGanttImp) window.renderGanttImp();
+            }
+        }
+
+        const devModule = (function() {
+            
         // weeks array: [S1, S2, S3, S4, S5, S6]
         // index:        0   1   2   3   4   5
         const WK_LABELS = [
@@ -1340,7 +283,7 @@
         }
 
         function buildTable() {
-            const tbody = document.getElementById('ganttBody');
+            const tbody = document.getElementById('ganttBodyDev');
             tbody.innerHTML = '';
             attachToggleToTable(tbody);
             let currentSection = null;
@@ -1442,9 +385,9 @@
         function hideTip() { tip.classList.remove('visible'); }
 
         // ── FILTERS ───────────────────────────────────────────────────────────────
-        document.querySelectorAll('.filter-btn').forEach(btn => {
+        document.querySelectorAll('#view-desarrollo .filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('#view-desarrollo .filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 applyFilter(btn.dataset.type);
             });
@@ -1460,7 +403,7 @@
 
         function applyFilter(f) {
             currentFilter = f;
-            const rows = document.querySelectorAll('#ganttBody tr');
+            const rows = document.querySelectorAll('#ganttBodyDev tr');
             let visible = 0;
             rows.forEach(tr => {
                 if (tr.classList.contains('row-section')) return;
@@ -1483,13 +426,392 @@
                 const isCollapsed = collapsedSections.has(tr.dataset.section);
                 tr.classList.toggle('row-hidden', !any && !isCollapsed);
             });
-            document.getElementById('stats-pill').innerHTML = `<strong>${visible}</strong> actividades visibles`;
+            document.getElementById('stats-pill-dev').innerHTML = `<strong>${visible}</strong> actividades visibles`;
         }
 
         buildTable();
+        attachToggleListener();
+
+            window.renderGanttDev = function() { buildTable();
+        attachToggleListener(); applyFilter(currentFilter); };
+        })();
+
+        const impModule = (function() {
+            
+        // weeks: [S1, S2, S3, S4, S5, S6, S7, S8]
+        // index:   0   1   2   3   4   5   6   7
+        const WK_LABELS = [
+            'S1 · 15–19 Jun', 'S2 · 22–26 Jun', 'S3 · 29 Jun–3 Jul (interna)',
+            'S4 · 6–10 Jul', 'S5 · 13–17 Jul',
+            'S6 · 20–24 Jul', 'S7 · 27–31 Jul', 'S8 · 3–9 Ago'
+        ];
+        const WK_CLS = ['wk-adm', 'wk-adm', 'wk-int', 'wk-adm', 'wk-adm', 'wk-op', 'wk-op', 'wk-op'];
+        const TYPE_LABELS = {
+            CONFIG: 'Configuración', VALID: 'Validación', PERS: 'Personalización',
+            CARGA: 'Carga de datos', INTERN: 'Semana interna', HITO: 'Hito de cierre'
+        };
+
+        const SECTIONS = {
+            SEC_S1_SETUP: { label: '— SEMANA 1: CONFIGURACIÓN INICIAL Y RRHH PARTE 1 —', cls: '' },
+            SEC_S2_RRHH: { label: '— SEMANA 2: RRHH PARTE 2 —', cls: '' },
+            SEC_S3_INT: { label: '— SEMANA 3: INTERNA — CABLEADO ERP OPERATIVO —', cls: 's-int' },
+            SEC_S4_CRM: { label: '— SEMANA 4: CRM, COMERCIAL Y COMPRAS —', cls: '' },
+            SEC_S5_FIN: { label: '— SEMANA 5: ADMINISTRACIÓN, FINANZAS Y CIERRE ERP ADMINISTRATIVO —', cls: '' },
+            SEC_S6_FLOTA: { label: '— SEMANA 6: FLOTA, TALLER Y CONFIABILIDAD —', cls: 's-op' },
+            SEC_S7_PROD: { label: '— SEMANA 7: PRODUCCIÓN, SUPPLY CHAIN Y TRANSPORTE —', cls: 's-op' },
+            SEC_S8_HSE: { label: '— SEMANA 8: SEGURIDAD & SALUD + PASE A PRODUCCIÓN FINAL —', cls: 's-op' },
+        };
+
+        // weeks array: 8 positions [S1,S2,S3,S4,S5,S6,S7,S8]
+        const ROWS = [
+            // ── SEMANA 1 (15–19 Jun) ─────────────────────────────────────────────────
+            { section: 'SEC_S1_SETUP' },
+            { id: 1, label: 'Creación del tenant de DIFESMAQ en el sistema', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 2, label: 'Configuración de empresa: razón social, RUC, logo y moneda', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 3, label: 'Creación de usuarios y contraseñas del equipo DIFESMAQ', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 4, label: 'Configuración de roles y permisos por área y cargo', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 5, label: 'Carga del organigrama y estructura de cargos', type: 'CARGA', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 6, label: 'Configuración de turnos y horarios reales de la empresa', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 7, label: 'Carga del personal operativo (ficha laboral, régimen, AFP)', type: 'CARGA', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 8, label: 'Carga del personal administrativo (ficha laboral, comisiones)', type: 'CARGA', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 9, label: 'Configuración de parámetros de nómina: UIT, RMV, AFP y régimen laboral', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 10, label: 'Validación: Reclutamiento (vacantes, candidatos y candidaturas)', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 11, label: 'Validación: Personal Operativo — ficha laboral y documentos', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 12, label: 'Validación: Personal Administrativo — ficha laboral y documentos', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 13, label: 'Validación: Turnos y Horarios', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 14, label: 'Validación: Control de Asistencia (diaria, semanal, mensual)', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 15, label: 'Validación: Solicitudes de RRHH (vacaciones, permisos, licencias, papeletas)', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 16, label: 'Personalización: ajustes de campos y flujos según feedback del cliente', type: 'PERS', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 17, label: 'HITO: Sistema activo y RRHH Parte 1 validado', type: 'HITO', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+
+            // ── SEMANA 2 (22–26 Jun) ─────────────────────────────────────────────────
+            { section: 'SEC_S2_RRHH' },
+            { id: 18, label: 'Carga de datos bancarios de colaboradores', type: 'CARGA', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 19, label: 'Carga y configuración de contratos laborales digitales con firma', type: 'CONFIG', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 20, label: 'Configuración de adendas a contratos existentes', type: 'CONFIG', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 21, label: 'Validación: Nómina — cálculo de prueba con datos reales del cliente', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 22, label: 'Validación: Nómina régimen minero (roster, ciclos 14×7 y 20×10)', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 23, label: 'Validación: Préstamos al Personal', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 24, label: 'Validación: Comisiones y generación de Recibo de Honorarios', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 25, label: 'Validación: Liquidación por Cese (prueba con caso real)', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 26, label: 'Validación: Evaluación de Desempeño', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 27, label: 'Validación: Amonestaciones y Papeletas', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 28, label: 'Validación: Roster Minero y Control de Horas', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 29, label: 'Validación: Tareo Administrativo (backoffice y app móvil)', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 30, label: 'Validación: Mi Portal — autoservicio del colaborador', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 31, label: 'Validación: Control de Asistencia — biométrico, geocercas y SAR', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 32, label: 'Validación: App Móvil — perfiles técnico, administrativo y supervisor', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 33, label: 'Personalización: régimen, ciclos mineros y ajustes de nómina propios del cliente', type: 'PERS', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            { id: 34, label: 'HITO: Módulo RRHH completo validado y operativo', type: 'HITO', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+
+            // ── SEMANA 3 (29 Jun–3 Jul) — INTERNA ────────────────────────────────────
+            { section: 'SEC_S3_INT' },
+            { id: 35, label: 'Cableado y conexión de pantallas del ERP Operativo a la base de datos (trabajo interno TIDEO — sin entregable al cliente)', type: 'INTERN', weeks: [0, 0, 1, 0, 0, 0, 0, 0] },
+
+            // ── SEMANA 4 (6–10 Jul) ──────────────────────────────────────────────────
+            { section: 'SEC_S4_CRM' },
+            { id: 36, label: 'Carga de clientes y contactos existentes', type: 'CARGA', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 37, label: 'Configuración de etapas del proceso comercial propio del cliente', type: 'CONFIG', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 38, label: 'Carga del catálogo de servicios y tarifarios', type: 'CARGA', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 39, label: 'Carga y homologación de proveedores', type: 'CARGA', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 40, label: 'Configuración de almacenes reales del cliente', type: 'CONFIG', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 41, label: 'Validación: Cuentas y Contactos', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 42, label: 'Validación: Leads y Pipeline de Oportunidades', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 43, label: 'Validación: Agenda Comercial y Actividades', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 44, label: 'Validación: Hoja de Costeo y Cotizaciones', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 45, label: 'Validación: Órdenes de Servicio al Cliente', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 46, label: 'Validación: Campañas de Marketing', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 47, label: 'Validación: Proveedores y Cotizaciones de Compra', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 48, label: 'Validación: Órdenes de Compra y Recepciones', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 49, label: 'Validación: Devoluciones a Proveedor', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 50, label: 'Validación: Almacenes, Inventario y SOLPE', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 51, label: 'Validación: Compras en Campo y Gastos', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 52, label: 'Validación: Transporte y Guías de Remisión', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            { id: 53, label: 'Personalización: diccionario comercial, etapas y condiciones del cliente', type: 'PERS', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+
+            // ── SEMANA 5 (13–17 Jul) ─────────────────────────────────────────────────
+            { section: 'SEC_S5_FIN' },
+            { id: 54, label: 'Configuración del plan de cuentas y categorías del Estado de Resultados', type: 'CONFIG', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 55, label: 'Carga del presupuesto anual inicial', type: 'CARGA', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 56, label: 'Configuración de series documentarias (facturas, OC y guías)', type: 'CONFIG', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 57, label: 'Configuración de condiciones financieras por tipo de cliente', type: 'CONFIG', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 58, label: 'Validación: Ventas y Pre-facturación', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 59, label: 'Validación: Facturación', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 60, label: 'Validación: Cuentas por Cobrar', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 61, label: 'Validación: Cuentas por Pagar', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 62, label: 'Validación: Tesorería y Match Bancario', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 63, label: 'Validación: Estado de Resultados', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 64, label: 'Validación: Caja Chica y Anticipos', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 65, label: 'Validación: Financiamiento y Deuda', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 66, label: 'Validación: Presupuesto vs Real', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 67, label: 'Validación: Valorizaciones', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 68, label: 'Validación: Activos Fijos', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 69, label: 'Validación: Business Intelligence (Dashboard, BI Comercial, BI Operativo, BI Financiero)', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 70, label: 'Validación: Inteligencia Artificial (IA Comercial, IA Operativa, IA Financiera)', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 71, label: 'Personalización: partidas del presupuesto y categorías ER propias del cliente', type: 'PERS', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            { id: 72, label: 'HITO: ERP ADMINISTRATIVO VALIDADO Y EN PRODUCCIÓN', type: 'HITO', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+
+            // ── SEMANA 6 (20–24 Jul) ─────────────────────────────────────────────────
+            { section: 'SEC_S6_FLOTA' },
+            { id: 73, label: 'Carga del maestro de equipos (modelos, series y horómetros base)', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 74, label: 'Configuración de contratos de alquiler vigentes', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 75, label: 'Configuración de tipos de trabajo y metas de disponibilidad mecánica (DMR) por contrato', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 76, label: 'Carga del plan de mantenimiento preventivo inicial', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 77, label: 'Validación: Dashboard Gerencial Operativo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 78, label: 'Validación: Mis OTs del Día (vista móvil por rol)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 79, label: 'Validación: Mapa de Campo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 80, label: 'Validación: Panel de Flota y Contratos de Alquiler', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 81, label: 'Validación: Actas y Despachos de equipos', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 82, label: 'Validación: Liquidación y Disponibilidad Mecánica (DMR)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 83, label: 'Validación: Pasaporte de Equipos', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 84, label: 'Validación: Gestión de Garantías', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 85, label: 'Validación: Certificaciones del Activo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 86, label: 'Validación: Bandeja Maestra de Órdenes de Trabajo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 87, label: 'Validación: Creación de OT (clasificación y herencia de costo)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 88, label: 'Validación: Partes de Taller y Cierre y Conformidad', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 89, label: 'Validación: Backlog Operativo y Programación de Mantenimiento Preventivo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 90, label: 'Validación: KPIs de Confiabilidad (MTBF, MTTR, DMR) y Disponibilidad vs Meta', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            { id: 91, label: 'Personalización: equipos reales, contratos vigentes y metas DMR por contrato', type: 'PERS', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+
+            // ── SEMANA 7 (27–31 Jul) ─────────────────────────────────────────────────
+            { section: 'SEC_S7_PROD' },
+            { id: 92, label: 'Carga del catálogo de repuestos con costos reales', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 93, label: 'Configuración de áreas productivas (Maestranza, Soldadura, Fabricación y Ensamble)', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 94, label: 'Carga de listas de materiales de los principales procesos', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 95, label: 'Configuración de rutas de transporte y tarifas por zona', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 96, label: 'Validación: Dashboard de Producción', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 97, label: 'Validación: Órdenes de Fabricación y Planificación', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 98, label: 'Validación: Control de Producción en Piso de Planta', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 99, label: 'Validación: OEE y Rendimiento', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 100, label: 'Validación: No Conformidades y Control de Calidad', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 101, label: 'Validación: Trazabilidad de Producción', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 102, label: 'Validación: Maestranza · Soldadura · Fabricación y Ensamble', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 103, label: 'Validación: Inventario, Kardex y SOLPE Operativo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 104, label: 'Validación: Compras e Importación — Supply Chain', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 105, label: 'Validación: Monitor de Viajes y Hoja de Ruta', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 106, label: 'Validación: Scheduler y Despacho', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 107, label: 'Validación: Catálogo de Repuestos y Órdenes de Venta', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 108, label: 'Validación: Guías y Despachos de Repuestos', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+            { id: 109, label: 'Personalización: catálogo, rutas y tarifas reales del cliente', type: 'PERS', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
+
+            // ── SEMANA 8 (3–9 Ago) ───────────────────────────────────────────────────
+            { section: 'SEC_S8_HSE' },
+            { id: 110, label: 'Configuración de protocolos HSE propios de DIFESMAQ', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 111, label: 'Carga de plantillas PETAR y ATS según operaciones del cliente', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 112, label: 'Validación: Dashboard HSE', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 113, label: 'Validación: Permisos de Trabajo en Alto Riesgo (PETAR)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 114, label: 'Validación: Registro de Incidentes', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 115, label: 'Validación: EPP y Certificaciones del Personal', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 116, label: 'Validación: Análisis de Trabajo Seguro (ATS)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 117, label: 'Validación: Protocolo de Bloqueo y Etiquetado (LOTO)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 118, label: 'Activación de documentos descargables: OT, Actas, Liquidación y Guías', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 119, label: 'Validación del flujo completo: Backlog → OT → Parte → Cierre → Liquidación → Valorización → Factura', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 120, label: 'Validación en dispositivo móvil (técnicos y personal de campo)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 121, label: 'Configuración final de usuarios, accesos y contraseñas del cliente', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 122, label: 'Entrega de manual de usuario y sesión de capacitación final con DIFESMAQ', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 123, label: 'HITO: TIDEO OPERA COMPLETO EN PRODUCCIÓN — ENTREGADO A DIFESMAQ', type: 'HITO', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+        ];
+
+        // ── BUILD TABLE ────────────────────────────────────────────────────────────
+        const collapsedSections = new Set();
+        let currentFilter = 'ALL';
+
+        
+        
+        let allCollapsed = false;
+        function toggleAllSections(e) {
+            allCollapsed = !allCollapsed;
+            
+            const table = e.currentTarget.closest('table');
+            const icon = e.currentTarget.querySelector('span');
+            if(icon) icon.style.transform = allCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)';
+            
+            Object.keys(SECTIONS).forEach(key => {
+                if (allCollapsed) collapsedSections.add(key);
+                else collapsedSections.delete(key);
+            });
+            
+            table.querySelectorAll('tr.row-section, tr.row-sec').forEach(tr => {
+                tr.classList.toggle('collapsed', allCollapsed);
+            });
+            
+            applyFilter(currentFilter);
+        }
+
         
 
-        // ── SIDEBAR TOGGLE ───────────────────────────────────────────────────────
+        
+        function attachToggleToTable(tbody) {
+            setTimeout(() => {
+                if (!tbody) return;
+                const table = tbody.closest('table');
+                if (!table) return;
+                const btn = table.querySelector('.js-toggle-all');
+                if (btn && !btn.dataset.listenerAttached) {
+                    btn.addEventListener('click', toggleAllSections);
+                    btn.dataset.listenerAttached = 'true';
+                }
+            }, 50);
+        }
+
+        function buildTable() {
+            const tbody = document.getElementById('ganttBodyImp');
+            tbody.innerHTML = '';
+            attachToggleToTable(tbody);
+            let currentSection = null;
+            const sectionWeeks = {};
+            ROWS.forEach(row => {
+                if (row.section) {
+                    currentSection = row.section;
+                    if (!sectionWeeks[currentSection]) sectionWeeks[currentSection] = [];
+                } else if (currentSection && row.weeks) {
+                    row.weeks.forEach((w, i) => {
+                        if (w) sectionWeeks[currentSection][i] = 1;
+                    });
+                }
+            });
+            currentSection = null;
+            ROWS.forEach(row => {
+                if (row.section) {
+                    currentSection = row.section;
+                    const sec = SECTIONS[row.section];
+                    const tr = document.createElement('tr');
+                    tr.className = 'row-sec ' + (sec.cls || '');
+                    tr.dataset.section = row.section;
+                    const tdLabel = document.createElement('td');
+                    tdLabel.colSpan = 3;
+                    tdLabel.innerHTML = `<span class="sec-toggle">▾</span>${sec.label}`;
+                    tr.appendChild(tdLabel);
+                    const sWeeks = sectionWeeks[row.section] || [];
+                    for (let wi = 0; wi < 8; wi++) {
+                        const td = document.createElement('td');
+                        td.className = 'c-wk ' + WK_CLS[wi];
+                        if (sWeeks[wi]) {
+                            const bar = document.createElement('span');
+                            bar.className = 'bar bar-INTERN';
+                            bar.style.opacity = '0.5';
+                            td.appendChild(bar);
+                        }
+                        tr.appendChild(td);
+                    }
+                    tr.addEventListener('click', () => toggleSection(row.section));
+                    tbody.appendChild(tr);
+                    return;
+                }
+                const isHito = row.type === 'HITO';
+                const isIntern = row.type === 'INTERN';
+                const tr = document.createElement('tr');
+                tr.className = isHito ? 'row-hito' : isIntern ? 'row-intern row-act' : 'row-act';
+                tr.dataset.type = row.type;
+                tr.dataset.id = row.id;
+                tr.dataset.section = currentSection;
+
+                // num
+                const tdN = document.createElement('td');
+                tdN.className = 'c-num';
+                tdN.textContent = isHito ? '◆' : row.id;
+                tr.appendChild(tdN);
+
+                // label
+                const tdL = document.createElement('td');
+                tdL.className = 'c-lbl' + (isHito ? ' lbl-hito' : isIntern ? ' lbl-intern' : '');
+                tdL.textContent = row.label;
+                tr.appendChild(tdL);
+
+                // type badge
+                const tdT = document.createElement('td');
+                tdT.className = 'c-type';
+                if (!isHito) {
+                    const b = document.createElement('span');
+                    b.className = `badge b-${isIntern ? 'INTERN' : row.type}`;
+                    b.textContent = row.type;
+                    tdT.appendChild(b);
+                }
+                tr.appendChild(tdT);
+
+                // 8 week cells
+                row.weeks.forEach((active, wi) => {
+                    const td = document.createElement('td');
+                    td.className = 'c-wk ' + WK_CLS[wi];
+                    if (active) {
+                        const bar = document.createElement('span');
+                        if (isHito) bar.className = 'bar bar-HITO';
+                        else if (isIntern) bar.className = 'bar bar-INTERN';
+                        else bar.className = `bar bar-${row.type}`;
+                        bar.addEventListener('mouseenter', e => showTip(e, row, wi));
+                        bar.addEventListener('mousemove', e => moveTip(e));
+                        bar.addEventListener('mouseleave', hideTip);
+                        td.appendChild(bar);
+                    }
+                    tr.appendChild(td);
+                });
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        // ── TOOLTIP ───────────────────────────────────────────────────────────────
+        const tip = document.getElementById('tooltip');
+        const ttT = document.getElementById('tt-type');
+        const ttN = document.getElementById('tt-name');
+        function showTip(e, row, wi) { ttT.textContent = TYPE_LABELS[row.type] + ' · ' + WK_LABELS[wi]; ttN.textContent = row.label; tip.classList.add('visible'); moveTip(e); }
+        function moveTip(e) { let x = e.clientX + 14, y = e.clientY + 14; if (x + 310 > window.innerWidth) x = e.clientX - 314; if (y + 80 > window.innerHeight) y = e.clientY - 80; tip.style.left = x + 'px'; tip.style.top = y + 'px'; }
+        function hideTip() { tip.classList.remove('visible'); }
+
+        // ── FILTERS ───────────────────────────────────────────────────────────────
+        document.querySelectorAll('#view-implementacion .filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#view-implementacion .filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                applyFilter(btn.dataset.type);
+            });
+        });
+
+        function toggleSection(key) {
+            if (collapsedSections.has(key)) collapsedSections.delete(key);
+            else collapsedSections.add(key);
+            document.querySelectorAll(`tr.row-sec[data-section="${key}"]`)
+                .forEach(tr => tr.classList.toggle('collapsed', collapsedSections.has(key)));
+            applyFilter(currentFilter);
+        }
+
+        function applyFilter(f) {
+            currentFilter = f;
+            const rows = document.querySelectorAll('#ganttBodyImp tr');
+            let visible = 0;
+            rows.forEach(tr => {
+                if (tr.classList.contains('row-sec')) return;
+                const t = tr.dataset.type;
+                // PERS filter also shows CARGA; HITO always shows with ALL
+                const match = f === 'ALL'
+                    || t === f
+                    || (f === 'PERS' && (t === 'PERS' || t === 'CARGA'));
+                const collapsed = collapsedSections.has(tr.dataset.section);
+                tr.classList.toggle('row-hidden', !match || collapsed);
+                if (match && !collapsed) visible++;
+            });
+            // hide empty section headers
+            rows.forEach(tr => {
+                if (!tr.classList.contains('row-sec')) return;
+                let next = tr.nextElementSibling, any = false;
+                while (next && !next.classList.contains('row-sec')) {
+                    if (!next.classList.contains('row-hidden')) { any = true; break; }
+                    next = next.nextElementSibling;
+                }
+                const isCollapsed = collapsedSections.has(tr.dataset.section);
+                tr.classList.toggle('row-hidden', !any && !isCollapsed);
+            });
+            document.getElementById('stats-pill-imp').innerHTML = `<strong>${visible}</strong> de 123 actividades`;
+        }
+
+        buildTable();
+        attachToggleListener();
+
+            window.renderGanttImp = function() { buildTable();
+        attachToggleListener(); applyFilter(currentFilter); };
+        })();
+
+        // ── SIDEBAR TOGGLE (shared across both views) ───────────────────────────────
         const sidebarEl = document.querySelector('.sidebar');
         const sidebarToggleBtn = document.getElementById('sidebarToggle');
         function setSidebarCollapsed(collapsed) {
@@ -1503,7 +825,6 @@
         sidebarToggleBtn.addEventListener('click', () => {
             setSidebarCollapsed(!sidebarEl.classList.contains('collapsed'));
         });
-    </script>
-</body>
 
-</html>
+        switchView('implementacion');
+    
