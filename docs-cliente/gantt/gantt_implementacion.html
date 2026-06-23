@@ -885,7 +885,7 @@
             <div class="header-title">
                 <h1>Gantt de Implementación — TIDEO OPERA</h1>
                 <p>Cliente: <strong style="color:#fff">ZAHORY</strong> &nbsp;·&nbsp; 15 de Junio → 9 de Agosto 2026
-                    &nbsp;·&nbsp; 8 semanas · 123 actividades</p>
+                    &nbsp;·&nbsp; 8 semanas · 52 actividades</p>
             </div>
             <div class="header-meta">
                 <div>Emitido: 17 Jun 2026</div>
@@ -910,7 +910,7 @@
             <button class="filter-btn" data-type="INTERN"><span class="dot"
                     style="background:var(--bar-intern)"></span>Semana interna</button>
             <div class="sep"></div>
-            <span class="stats-pill" id="stats-pill"><strong>123</strong> de 123 actividades</span>
+            <span class="stats-pill" id="stats-pill"><strong>52</strong> de 52 actividades</span>
         </div>
     </div>
 
@@ -938,7 +938,7 @@
                 <div class="lbl">Tablas de base de datos</div>
             </div>
             <div class="summary-card c-purple">
-                <div class="val">262</div>
+                <div class="val">166</div>
                 <div class="lbl">Actividades globales</div>
             </div>
             <div class="summary-card c-red">
@@ -964,14 +964,13 @@
                     </tr>
                     <!-- ROW 2: week date labels — 8 week columns -->
                     <tr class="hdr-bot">
-                        <th class="wk-adm">S7<br><small>15–19 Jun</small></th>
-                        <th class="wk-adm">S8<br><small>22–26 Jun</small></th>
-                        <th class="wk-int">S9<br><small>29 Jun–3 Jul</small></th>
-                        <th class="wk-adm">S10<br><small>6–10 Jul</small></th>
-                        <th class="wk-adm">S11<br><small>13–17 Jul</small></th>
-                        <th class="wk-op">S12<br><small>20–24 Jul</small></th>
-                        <th class="wk-op">S13<br><small>27–31 Jul</small></th>
-                        <th class="wk-op">S14<br><small>3–9 Ago</small></th>
+                        <th class="wk-adm">S6<br><small>22-28 Jun</small></th>
+                        <th class="wk-int">S7<br><small>29 Jun-05 Jul</small></th>
+                        <th class="wk-adm">S8<br><small>06-12 Jul</small></th>
+                        <th class="wk-adm">S9<br><small>13-19 Jul</small></th>
+                        <th class="wk-op">S10<br><small>20-26 Jul</small></th>
+                        <th class="wk-op">S11<br><small>27 Jul-02 Ago</small></th>
+                        <th class="wk-op">S12<br><small>03-09 Ago</small></th>
                     </tr>
                 </thead>
                 <tbody id="ganttBody"></tbody>
@@ -1013,94 +1012,84 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>S7</td>
-                        <td>15–19 Jun · RRHH Parte 1: empresa, usuarios, personal, turnos y asistencia</td>
-                        <td>6</td>
-                        <td>6</td>
+                        <td>S6</td>
+                        <td>22–28 Jun · RRHH Completo y Configuración Inicial</td>
                         <td>4</td>
-                        <td>—</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>4</td>
                         <td>1</td>
-                        <td>17</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>S7</td>
+                        <td>29 Jun–05 Jul · Semana interna — Cableado ERP Operativo</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>4</td>
                     </tr>
                     <tr>
                         <td>S8</td>
-                        <td>22–26 Jun · RRHH Parte 2: nómina, cese, comisiones, portal y biométrico</td>
+                        <td>06–12 Jul · CRM, Comercial y Compras</td>
                         <td>2</td>
-                        <td>12</td>
-                        <td>2</td>
-                        <td>—</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>0</td>
                         <td>1</td>
-                        <td>17</td>
+                        <td>8</td>
                     </tr>
-                    <tr class="int-row">
+                    <tr>
                         <td>S9</td>
-                        <td>29 Jun–3 Jul · Semana interna — cableado ERP Operativo (sin entregable al cliente)</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>—</td>
+                        <td>13–19 Jul · Administración, Finanzas y Cierre ERP Administrativo</td>
                         <td>1</td>
-                        <td>—</td>
+                        <td>0</td>
+                        <td>6</td>
+                        <td>0</td>
                         <td>1</td>
+                        <td>8</td>
                     </tr>
                     <tr>
                         <td>S10</td>
-                        <td>6–10 Jul · CRM, Comercial y Compras</td>
-                        <td>2</td>
-                        <td>12</td>
+                        <td>20–26 Jul · Flota, Taller y Confiabilidad</td>
+                        <td>0</td>
                         <td>4</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>18</td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>8</td>
                     </tr>
                     <tr>
                         <td>S11</td>
-                        <td>13–17 Jul · Administración, Finanzas y Cierre ERP Administrativo</td>
-                        <td>3</td>
-                        <td>13</td>
+                        <td>27 Jul–02 Ago · Producción, Supply Chain y Transporte</td>
+                        <td>0</td>
+                        <td>5</td>
                         <td>2</td>
-                        <td>—</td>
+                        <td>0</td>
                         <td>1</td>
-                        <td>19</td>
+                        <td>8</td>
                     </tr>
                     <tr>
                         <td>S12</td>
-                        <td>20–24 Jul · Flota, Taller y Confiabilidad</td>
-                        <td>2</td>
-                        <td>13</td>
-                        <td>3</td>
-                        <td>—</td>
+                        <td>03–09 Ago · HSE, Auditoría y Pase a Producción</td>
+                        <td>0</td>
+                        <td>5</td>
                         <td>1</td>
-                        <td>19</td>
-                    </tr>
-                    <tr>
-                        <td>S13</td>
-                        <td>27–31 Jul · Producción, Supply Chain y Transporte</td>
-                        <td>2</td>
-                        <td>13</td>
-                        <td>3</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>18</td>
-                    </tr>
-                    <tr>
-                        <td>S14</td>
-                        <td>3–9 Ago · HSE, Pase a Producción y Entrega Final</td>
-                        <td>4</td>
-                        <td>8</td>
+                        <td>0</td>
                         <td>1</td>
-                        <td>—</td>
-                        <td>1</td>
-                        <td>14</td>
+                        <td>7</td>
                     </tr>
                     <tr class="total-row">
                         <td>TOTAL</td>
-                        <td>15 Jun – 9 Ago 2026</td>
+                        <td>22 Jun – 09 Ago 2026</td>
                         <td>21</td>
                         <td>77</td>
                         <td>19</td>
                         <td>1</td>
                         <td>5</td>
-                        <td>123</td>
+                        <td>52</td>
                     </tr>
                 </tbody>
             </table>
@@ -1121,175 +1110,100 @@
         // weeks: [S1, S2, S3, S4, S5, S6, S7, S8]
         // index:   0   1   2   3   4   5   6   7
         const WK_LABELS = [
-            'S7 · 15–19 Jun', 'S8 · 22–26 Jun', 'S7 · 29 Jun–3 Jul (interna)',
-            'S8 · 6–10 Jul', 'S7 · 13–17 Jul',
-            'S8 · 20–24 Jul', 'S7 · 27–31 Jul', 'S8 · 3–9 Ago'
+            'S6 — 22-28 Jun', 'S7 — 29 Jun-05 Jul', 'S8 — 06-12 Jul',
+            'S9 — 13-19 Jul', 'S10 — 20-26 Jul',
+            'S11 — 27 Jul-02 Ago', 'S12 — 03-09 Ago'
         ];
-        const WK_CLS = ['wk-adm', 'wk-adm', 'wk-int', 'wk-adm', 'wk-adm', 'wk-op', 'wk-op', 'wk-op'];
+        const WK_CLS = ['wk-adm', 'wk-int', 'wk-adm', 'wk-adm', 'wk-op', 'wk-op', 'wk-op'];
         const TYPE_LABELS = {
             CONFIG: 'Configuración', VALID: 'Validación', PERS: 'Personalización',
             CARGA: 'Carga de datos', INTERN: 'Semana interna', HITO: 'Hito de cierre'
         };
 
         const SECTIONS = {
-            SEC_S1_SETUP: { label: '— SEMANA 7: CONFIGURACIÓN INICIAL Y RRHH PARTE 1 —', cls: '' },
-            SEC_S2_RRHH: { label: '— SEMANA 8: RRHH PARTE 2 —', cls: '' },
-            SEC_S3_INT: { label: '— SEMANA 9: INTERNA — CABLEADO ERP OPERATIVO —', cls: 's-int' },
-            SEC_S4_CRM: { label: '— SEMANA 10: CRM, COMERCIAL Y COMPRAS —', cls: '' },
-            SEC_S5_FIN: { label: '— SEMANA 11: ADMINISTRACIÓN, FINANZAS Y CIERRE ERP ADMINISTRATIVO —', cls: '' },
-            SEC_S6_FLOTA: { label: '— SEMANA 12: FLOTA, TALLER Y CONFIABILIDAD —', cls: 's-op' },
-            SEC_S7_PROD: { label: '— SEMANA 13: PRODUCCIÓN, SUPPLY CHAIN Y TRANSPORTE —', cls: 's-op' },
-            SEC_S8_HSE: { label: '— SEMANA 14: SEGURIDAD & SALUD + PASE A PRODUCCIÓN FINAL —', cls: 's-op' },
+            SEC_S6_RRHH: { label: '- SEMANA 6: CONFIGURACIÓN INICIAL Y RRHH COMPLETO -', cls: '' },
+            SEC_S7_INT: { label: '- SEMANA 7: INTERNA - CABLEADO ERP OPERATIVO -', cls: 's-int' },
+            SEC_S8_CRM: { label: '- SEMANA 8: CRM, COMERCIAL Y COMPRAS -', cls: '' },
+            SEC_S9_FIN: { label: '- SEMANA 9: ADMINISTRACIÓN, FINANZAS Y CIERRE ERP ADMINISTRATIVO -', cls: '' },
+            SEC_S10_FLOTA: { label: '- SEMANA 10: FLOTA, TALLER Y CONFIABILIDAD -', cls: 's-op' },
+            SEC_S11_PROD: { label: '- SEMANA 11: PRODUCCIÓN, SUPPLY CHAIN Y TRANSPORTE -', cls: 's-op' },
+            SEC_S12_HSE: { label: '- SEMANA 12: SEGURIDAD & SALUD + PASE A PRODUCCIÓN FINAL -', cls: 's-op' },
         };
 
         // weeks array: 8 positions [S1,S2,S3,S4,S5,S6,S7,S8]
         const ROWS = [
-            // ── SEMANA 7 (15–19 Jun) ─────────────────────────────────────────────────
-            { section: 'SEC_S1_SETUP' },
-            { id: 1, label: 'Creación del tenant de ZAHORY en el sistema', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 2, label: 'Configuración de empresa: razón social, RUC, logo y moneda', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 3, label: 'Creación de usuarios y contraseñas del equipo ZAHORY', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 4, label: 'Configuración de roles y permisos por área y cargo', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 5, label: 'Carga del organigrama y estructura de cargos', type: 'CARGA', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 6, label: 'Configuración de turnos y horarios reales de la empresa', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 7, label: 'Carga del personal operativo (ficha laboral, régimen, AFP)', type: 'CARGA', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 8, label: 'Carga del personal administrativo (ficha laboral, comisiones)', type: 'CARGA', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 9, label: 'Configuración de parámetros de nómina: UIT, RMV, AFP y régimen laboral', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 10, label: 'Validación: Reclutamiento (vacantes, candidatos y candidaturas)', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 11, label: 'Validación: Personal Operativo — ficha laboral y documentos', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 12, label: 'Validación: Personal Administrativo — ficha laboral y documentos', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 13, label: 'Validación: Turnos y Horarios', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 14, label: 'Validación: Control de Asistencia (diaria, semanal, mensual)', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 15, label: 'Validación: Solicitudes de RRHH (vacaciones, permisos, licencias, papeletas)', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 16, label: 'Personalización: ajustes de campos y flujos según feedback del cliente', type: 'PERS', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 17, label: 'HITO: Sistema activo y RRHH Parte 1 validado', type: 'HITO', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            // ── SEMANA 6 (22–28 Jun) ─────────────────────────────────────────────────
+            { section: 'SEC_S6_RRHH' },
+            { id: 1, label: 'Configuración inicial de Empresa, Tenant, Roles y Usuarios', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0] },
+            { id: 2, label: 'Carga de estructura: Organigrama, Cargos y Personal (Administrativo y Operativo)', type: 'CARGA', weeks: [1, 0, 0, 0, 0, 0, 0] },
+            { id: 3, label: 'Configuración y carga de Turnos, Horarios, Contratos Digitales y Adendas', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0] },
+            { id: 4, label: 'Configuración de Nómina y datos bancarios (Parámetros, AFP, Cuentas)', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0] },
+            { id: 5, label: 'Validación Base: Reclutamiento, Fichas de Personal, Asistencia, Turnos y Solicitudes', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0] },
+            { id: 6, label: 'Validación Nómina y Pagos: Préstamos, Comisiones, Cese, Recibos y Roster Minero', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0] },
+            { id: 7, label: 'Validación Operativa: Evaluación, Portal del Colaborador, Biométrico y App Móvil', type: 'VALID', weeks: [1, 0, 0, 0, 0, 0, 0] },
+            { id: 8, label: 'Personalización y ajustes finales según feedback del cliente', type: 'PERS', weeks: [1, 0, 0, 0, 0, 0, 0] },
+            { id: 9, label: 'HITO: Sistema base y Módulo RRHH completo validado y operativo', type: 'HITO', weeks: [1, 0, 0, 0, 0, 0, 0] },
 
-            // ── SEMANA 8 (22–26 Jun) ─────────────────────────────────────────────────
-            { section: 'SEC_S2_RRHH' },
-            { id: 18, label: 'Carga de datos bancarios de colaboradores', type: 'CARGA', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 19, label: 'Carga y configuración de contratos laborales digitales con firma', type: 'CONFIG', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 20, label: 'Configuración de adendas a contratos existentes', type: 'CONFIG', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 21, label: 'Validación: Nómina — cálculo de prueba con datos reales del cliente', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 22, label: 'Validación: Nómina régimen minero (roster, ciclos 14×7 y 20×10)', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 23, label: 'Validación: Préstamos al Personal', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 24, label: 'Validación: Comisiones y generación de Recibo de Honorarios', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 25, label: 'Validación: Liquidación por Cese (prueba con caso real)', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 26, label: 'Validación: Evaluación de Desempeño', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 27, label: 'Validación: Amonestaciones y Papeletas', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 28, label: 'Validación: Roster Minero y Control de Horas', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 29, label: 'Validación: Tareo Administrativo (backoffice y app móvil)', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 30, label: 'Validación: Mi Portal — autoservicio del colaborador', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 31, label: 'Validación: Control de Asistencia — biométrico, geocercas y SAR', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 32, label: 'Validación: App Móvil — perfiles técnico, administrativo y supervisor', type: 'VALID', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 33, label: 'Personalización: régimen, ciclos mineros y ajustes de nómina propios del cliente', type: 'PERS', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
-            { id: 34, label: 'HITO: Módulo RRHH completo validado y operativo', type: 'HITO', weeks: [0, 1, 0, 0, 0, 0, 0, 0] },
+            // ── SEMANA 7 (29 Jun–05 Jul) ─────────────────────────────────────────────────
+            { section: 'SEC_S7_INT' },
+            { id: 10, label: 'Sincronización de Base de Datos Base de ZAHORY con ERP Operativo', type: 'INTERN', weeks: [0, 1, 0, 0, 0, 0, 0] },
+            { id: 11, label: 'Cableado Interno: Fichas de equipos, vehículos y conductores hacia Módulo Flota', type: 'INTERN', weeks: [0, 1, 0, 0, 0, 0, 0] },
+            { id: 12, label: 'Cableado Interno: Integración de Compras y Almacén con Módulo Producción/Supply', type: 'INTERN', weeks: [0, 1, 0, 0, 0, 0, 0] },
+            { id: 13, label: 'Pruebas E2E internas: Flujo desde oportunidad ganada hasta orden de trabajo operativa', type: 'INTERN', weeks: [0, 1, 0, 0, 0, 0, 0] },
 
-            // ── SEMANA 7 (29 Jun–3 Jul) — INTERNA ────────────────────────────────────
-            { section: 'SEC_S3_INT' },
-            { id: 35, label: 'Cableado y conexión de pantallas del ERP Operativo a la base de datos (trabajo interno TIDEO — sin entregable al cliente)', type: 'INTERN', weeks: [0, 0, 1, 0, 0, 0, 0, 0] },
+            // ── SEMANA 8 (06–12 Jul) ─────────────────────────────────────────────────
+            { section: 'SEC_S8_CRM' },
+            { id: 14, label: 'Carga de base de datos de Clientes, Contactos y Oportunidades Históricas', type: 'CARGA', weeks: [0, 0, 1, 0, 0, 0, 0] },
+            { id: 15, label: 'Carga del catálogo de Productos, Servicios y Listas de Precios', type: 'CARGA', weeks: [0, 0, 1, 0, 0, 0, 0] },
+            { id: 16, label: 'Configuración de Hoja de Costeo, flujos de aprobación y plantillas de cotización PDF', type: 'CONFIG', weeks: [0, 0, 1, 0, 0, 0, 0] },
+            { id: 17, label: 'Carga de Proveedores, Homologación y contratos vigentes', type: 'CARGA', weeks: [0, 0, 1, 0, 0, 0, 0] },
+            { id: 18, label: 'Validación: CRM (Leads, Agenda, Actividades, Pipeline y Cotizaciones)', type: 'VALID', weeks: [0, 0, 1, 0, 0, 0, 0] },
+            { id: 19, label: 'Validación: Compras (Requerimientos, OC, Ingreso a Almacén, GRNI)', type: 'VALID', weeks: [0, 0, 1, 0, 0, 0, 0] },
+            { id: 20, label: 'Personalización: campos extra en clientes y formatos de orden de compra', type: 'PERS', weeks: [0, 0, 1, 0, 0, 0, 0] },
+            { id: 21, label: 'HITO: Módulos Comercial y Compras validados y operativos', type: 'HITO', weeks: [0, 0, 1, 0, 0, 0, 0] },
 
-            // ── SEMANA 8 (6–10 Jul) ──────────────────────────────────────────────────
-            { section: 'SEC_S4_CRM' },
-            { id: 36, label: 'Carga de clientes y contactos existentes', type: 'CARGA', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 37, label: 'Configuración de etapas del proceso comercial propio del cliente', type: 'CONFIG', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 38, label: 'Carga del catálogo de servicios y tarifarios', type: 'CARGA', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 39, label: 'Carga y homologación de proveedores', type: 'CARGA', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 40, label: 'Configuración de almacenes reales del cliente', type: 'CONFIG', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 41, label: 'Validación: Cuentas y Contactos', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 42, label: 'Validación: Leads y Pipeline de Oportunidades', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 43, label: 'Validación: Agenda Comercial y Actividades', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 44, label: 'Validación: Hoja de Costeo y Cotizaciones', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 45, label: 'Validación: Órdenes de Servicio al Cliente', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 46, label: 'Validación: Campañas de Marketing', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 47, label: 'Validación: Proveedores y Cotizaciones de Compra', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 48, label: 'Validación: Órdenes de Compra y Recepciones', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 49, label: 'Validación: Devoluciones a Proveedor', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 50, label: 'Validación: Almacenes, Inventario y SOLPE', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 51, label: 'Validación: Compras en Campo y Gastos', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 52, label: 'Validación: Transporte y Guías de Remisión', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
-            { id: 53, label: 'Personalización: diccionario comercial, etapas y condiciones del cliente', type: 'PERS', weeks: [0, 0, 0, 1, 0, 0, 0, 0] },
+            // ── SEMANA 9 (13–19 Jul) ─────────────────────────────────────────────────
+            { section: 'SEC_S9_FIN' },
+            { id: 22, label: 'Carga de Cuentas Bancarias, Cajas y Saldos Iniciales', type: 'CARGA', weeks: [0, 0, 0, 1, 0, 0, 0] },
+            { id: 23, label: 'Configuración de Presupuestos (CapEx / OpEx) y Centro de Costos', type: 'CONFIG', weeks: [0, 0, 0, 1, 0, 0, 0] },
+            { id: 24, label: 'Validación: Cuentas por Cobrar, Cuentas por Pagar y Flujo de Caja', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0] },
+            { id: 25, label: 'Validación: Conciliación Bancaria y Módulo de Deuda/Financiamiento', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0] },
+            { id: 26, label: 'Validación: Cierre de Nómina contra flujo de egresos', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0] },
+            { id: 27, label: 'Validación: BI Financiero, Dashboard General y KPIs cruzados', type: 'VALID', weeks: [0, 0, 0, 1, 0, 0, 0] },
+            { id: 28, label: 'Personalización: Estructura del P&L y reportes de rentabilidad', type: 'PERS', weeks: [0, 0, 0, 1, 0, 0, 0] },
+            { id: 29, label: 'HITO: ERP Administrativo 100% validado y cerrado', type: 'HITO', weeks: [0, 0, 0, 1, 0, 0, 0] },
 
-            // ── SEMANA 7 (13–17 Jul) ─────────────────────────────────────────────────
-            { section: 'SEC_S5_FIN' },
-            { id: 54, label: 'Configuración del plan de cuentas y categorías del Estado de Resultados', type: 'CONFIG', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 55, label: 'Carga del presupuesto anual inicial', type: 'CARGA', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 56, label: 'Configuración de series documentarias (facturas, OC y guías)', type: 'CONFIG', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 57, label: 'Configuración de condiciones financieras por tipo de cliente', type: 'CONFIG', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 58, label: 'Validación: Ventas y Pre-facturación', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 59, label: 'Validación: Facturación', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 60, label: 'Validación: Cuentas por Cobrar', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 61, label: 'Validación: Cuentas por Pagar', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 62, label: 'Validación: Tesorería y Match Bancario', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 63, label: 'Validación: Estado de Resultados', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 64, label: 'Validación: Caja Chica y Anticipos', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 65, label: 'Validación: Financiamiento y Deuda', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 66, label: 'Validación: Presupuesto vs Real', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 67, label: 'Validación: Valorizaciones', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 68, label: 'Validación: Activos Fijos', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 69, label: 'Validación: Business Intelligence (Dashboard, BI Comercial, BI Operativo, BI Financiero)', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 70, label: 'Validación: Inteligencia Artificial (IA Comercial, IA Operativa, IA Financiera)', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 71, label: 'Personalización: partidas del presupuesto y categorías ER propias del cliente', type: 'PERS', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
-            { id: 72, label: 'HITO: ERP ADMINISTRATIVO VALIDADO Y EN PRODUCCIÓN', type: 'HITO', weeks: [0, 0, 0, 0, 1, 0, 0, 0] },
+            // ── SEMANA 10 (20–26 Jul) ────────────────────────────────────────────────
+            { section: 'SEC_S10_FLOTA' },
+            { id: 30, label: 'Carga del padrón de Vehículos, Maquinaria, Seguros y SOAT', type: 'CARGA', weeks: [0, 0, 0, 0, 1, 0, 0] },
+            { id: 31, label: 'Configuración de Planes de Mantenimiento Preventivo e Intervalos', type: 'CONFIG', weeks: [0, 0, 0, 0, 1, 0, 0] },
+            { id: 32, label: 'Validación: Inspecciones pre-uso y checklist digital desde App Móvil', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0] },
+            { id: 33, label: 'Validación: Generación de Órdenes de Trabajo (OT) para Taller Interno y Externo', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0] },
+            { id: 34, label: 'Validación: Consumo de Repuestos desde Almacén hacia OTs de Mantenimiento', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0] },
+            { id: 35, label: 'Validación: Abastecimiento de Combustible, Control de Rendimiento (Km/Gal)', type: 'VALID', weeks: [0, 0, 0, 0, 1, 0, 0] },
+            { id: 36, label: 'Personalización: Alertas tempranas y KPIs de Confiabilidad de Flota', type: 'PERS', weeks: [0, 0, 0, 0, 1, 0, 0] },
+            { id: 37, label: 'HITO: Módulos de Flota y Taller validados y operativos', type: 'HITO', weeks: [0, 0, 0, 0, 1, 0, 0] },
 
-            // ── SEMANA 8 (20–24 Jul) ─────────────────────────────────────────────────
-            { section: 'SEC_S6_FLOTA' },
-            { id: 73, label: 'Carga del maestro de equipos (modelos, series y horómetros base)', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 74, label: 'Configuración de contratos de alquiler vigentes', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 75, label: 'Configuración de tipos de trabajo y metas de disponibilidad mecánica (DMR) por contrato', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 76, label: 'Carga del plan de mantenimiento preventivo inicial', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 77, label: 'Validación: Dashboard Gerencial Operativo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 78, label: 'Validación: Mis OTs del Día (vista móvil por rol)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 79, label: 'Validación: Mapa de Campo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 80, label: 'Validación: Panel de Flota y Contratos de Alquiler', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 81, label: 'Validación: Actas y Despachos de equipos', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 82, label: 'Validación: Liquidación y Disponibilidad Mecánica (DMR)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 83, label: 'Validación: Pasaporte de Equipos', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 84, label: 'Validación: Gestión de Garantías', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 85, label: 'Validación: Certificaciones del Activo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 86, label: 'Validación: Bandeja Maestra de Órdenes de Trabajo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 87, label: 'Validación: Creación de OT (clasificación y herencia de costo)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 88, label: 'Validación: Partes de Taller y Cierre y Conformidad', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 89, label: 'Validación: Backlog Operativo y Programación de Mantenimiento Preventivo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 90, label: 'Validación: KPIs de Confiabilidad (MTBF, MTTR, DMR) y Disponibilidad vs Meta', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
-            { id: 91, label: 'Personalización: equipos reales, contratos vigentes y metas DMR por contrato', type: 'PERS', weeks: [0, 0, 0, 0, 0, 1, 0, 0] },
+            // ── SEMANA 11 (27 Jul–02 Ago) ───────────────────────────────────────────
+            { section: 'SEC_S11_PROD' },
+            { id: 38, label: 'Carga de Tarifarios, Rutas y Geocercas operativas', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 1, 0] },
+            { id: 39, label: 'Validación: Despacho y Asignación de Viajes (Scheduler)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0] },
+            { id: 40, label: 'Validación: Monitor de Viajes y Hoja de Ruta interactiva (App de Conductor)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0] },
+            { id: 41, label: 'Validación: Control de Gastos de Ruta, Viáticos y Peajes', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0] },
+            { id: 42, label: 'Validación: Gestión de Guías de Remisión Remitente y Transportista Electrónicas', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0] },
+            { id: 43, label: 'Validación: Facturación y Valorización de Servicios Operativos', type: 'VALID', weeks: [0, 0, 0, 0, 0, 1, 0] },
+            { id: 44, label: 'Personalización: Reglas de asignación automática e integraciones GPS', type: 'PERS', weeks: [0, 0, 0, 0, 0, 1, 0] },
+            { id: 45, label: 'HITO: Producción, Supply Chain y Transporte validados', type: 'HITO', weeks: [0, 0, 0, 0, 0, 1, 0] },
 
-            // ── SEMANA 7 (27–31 Jul) ─────────────────────────────────────────────────
-            { section: 'SEC_S7_PROD' },
-            { id: 92, label: 'Carga del catálogo de repuestos con costos reales', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 93, label: 'Configuración de áreas productivas (Maestranza, Soldadura, Fabricación y Ensamble)', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 94, label: 'Carga de listas de materiales de los principales procesos', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 95, label: 'Configuración de rutas de transporte y tarifas por zona', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 96, label: 'Validación: Dashboard de Producción', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 97, label: 'Validación: Órdenes de Fabricación y Planificación', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 98, label: 'Validación: Control de Producción en Piso de Planta', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 99, label: 'Validación: OEE y Rendimiento', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 100, label: 'Validación: No Conformidades y Control de Calidad', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 101, label: 'Validación: Trazabilidad de Producción', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 102, label: 'Validación: Maestranza · Soldadura · Fabricación y Ensamble', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 103, label: 'Validación: Inventario, Kardex y SOLPE Operativo', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 104, label: 'Validación: Compras e Importación — Supply Chain', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 105, label: 'Validación: Monitor de Viajes y Hoja de Ruta', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 106, label: 'Validación: Scheduler y Despacho', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 107, label: 'Validación: Catálogo de Repuestos y Órdenes de Venta', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 108, label: 'Validación: Guías y Despachos de Repuestos', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-            { id: 109, label: 'Personalización: catálogo, rutas y tarifas reales del cliente', type: 'PERS', weeks: [0, 0, 0, 0, 0, 0, 1, 0] },
-
-            // ── SEMANA 8 (3–9 Ago) ───────────────────────────────────────────────────
-            { section: 'SEC_S8_HSE' },
-            { id: 110, label: 'Configuración de protocolos HSE propios de ZAHORY', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 111, label: 'Carga de plantillas PETAR y ATS según operaciones del cliente', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 112, label: 'Validación: Dashboard HSE', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 113, label: 'Validación: Permisos de Trabajo en Alto Riesgo (PETAR)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 114, label: 'Validación: Registro de Incidentes', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 115, label: 'Validación: EPP y Certificaciones del Personal', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 116, label: 'Validación: Análisis de Trabajo Seguro (ATS)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 117, label: 'Validación: Protocolo de Bloqueo y Etiquetado (LOTO)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 118, label: 'Activación de documentos descargables: OT, Actas, Liquidación y Guías', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 119, label: 'Validación del flujo completo: Backlog → OT → Parte → Cierre → Liquidación → Valorización → Factura', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 120, label: 'Validación en dispositivo móvil (técnicos y personal de campo)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 121, label: 'Configuración final de usuarios, accesos y contraseñas del cliente', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 122, label: 'Entrega de manual de usuario y sesión de capacitación final con ZAHORY', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 123, label: 'HITO: TIDEO OPERA COMPLETO EN PRODUCCIÓN — ENTREGADO A ZAHORY', type: 'HITO', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            // ── SEMANA 12 (03–09 Ago) ────────────────────────────────────────────────
+            { section: 'SEC_S12_HSE' },
+            { id: 46, label: 'Configuración de Matrices IPERC y Mapas de Riesgo', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 1] },
+            { id: 47, label: 'Validación: Permisos de Trabajo en Alto Riesgo (PETAR) digitales', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1] },
+            { id: 48, label: 'Validación: Análisis de Trabajo Seguro (ATS) y Registro de Incidentes', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1] },
+            { id: 49, label: 'Validación: Asignación y control de EPPs por colaborador', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1] },
+            { id: 50, label: 'Auditoría Final 360°: Cruce de operaciones con contabilidad y nómina', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1] },
+            { id: 51, label: 'Firma de Actas de Cierre y Pase a Producción Definitivo (Go-Live)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 1] },
+            { id: 52, label: 'HITO: Entrega Final del Sistema ZAHORY - Go-Live Exitoso', type: 'HITO', weeks: [0, 0, 0, 0, 0, 0, 1] }
         ];
 
         // ── BUILD TABLE ────────────────────────────────────────────────────────────
@@ -1363,7 +1277,7 @@
                     tdLabel.innerHTML = `<span class="sec-toggle">▾</span>${sec.label}`;
                     tr.appendChild(tdLabel);
                     const sWeeks = sectionWeeks[row.section] || [];
-                    for (let wi = 0; wi < 8; wi++) {
+                    for (let wi = 0; wi < 7; wi++) {
                         const td = document.createElement('td');
                         td.className = 'c-wk ' + WK_CLS[wi];
                         if (sWeeks[wi]) {
@@ -1481,7 +1395,7 @@
                 const isCollapsed = collapsedSections.has(tr.dataset.section);
                 tr.classList.toggle('row-hidden', !any && !isCollapsed);
             });
-            document.getElementById('stats-pill').innerHTML = `<strong>${visible}</strong> de 123 actividades`;
+            document.getElementById('stats-pill').innerHTML = `<strong>${visible}</strong> de 52 actividades`;
         }
 
         buildTable();
@@ -1506,36 +1420,34 @@
 <script>
 (function() {
     const WEEKS = [
-        { n: 1, d: new Date('2026-05-04T00:00:00') },
-        { n: 2, d: new Date('2026-05-11T00:00:00') },
-        { n: 3, d: new Date('2026-05-18T00:00:00') },
-        { n: 4, d: new Date('2026-05-25T00:00:00') },
-        { n: 5, d: new Date('2026-06-01T00:00:00') },
-        { n: 6, d: new Date('2026-06-08T00:00:00') },
-        { n: 7, d: new Date('2026-06-15T00:00:00') },
-        { n: 8, d: new Date('2026-06-22T00:00:00') },
-        { n: 9, d: new Date('2026-06-29T00:00:00') },
-        { n: 10, d: new Date('2026-07-06T00:00:00') },
-        { n: 11, d: new Date('2026-07-13T00:00:00') },
-        { n: 12, d: new Date('2026-07-20T00:00:00') },
-        { n: 13, d: new Date('2026-07-27T00:00:00') },
-        { n: 14, d: new Date('2026-08-03T00:00:00') }
+        { n: 1, d: new Date('2026-05-18T00:00:00') },
+        { n: 2, d: new Date('2026-05-25T00:00:00') },
+        { n: 3, d: new Date('2026-06-01T00:00:00') },
+        { n: 4, d: new Date('2026-06-08T00:00:00') },
+        { n: 5, d: new Date('2026-06-15T00:00:00') },
+        { n: 6, d: new Date('2026-06-22T00:00:00') },
+        { n: 7, d: new Date('2026-06-29T00:00:00') },
+        { n: 8, d: new Date('2026-07-06T00:00:00') },
+        { n: 9, d: new Date('2026-07-13T00:00:00') },
+        { n: 10, d: new Date('2026-07-20T00:00:00') },
+        { n: 11, d: new Date('2026-07-27T00:00:00') },
+        { n: 12, d: new Date('2026-08-03T00:00:00') }
     ];
     let currentWeek = 1;
     const now = new Date();
     for(let w of WEEKS) {
         if (now >= w.d) currentWeek = w.n;
     }
-    if (currentWeek > 14) currentWeek = 14;
+    if (currentWeek > 12) currentWeek = 12;
     
     
     const devCumulative = {
-        1: 19, 2: 36, 3: 51, 4: 83, 5: 116, 6: 139,
-        7: 139, 8: 139, 9: 139, 10: 139, 11: 139, 12: 139, 13: 139, 14: 139
+        1: 34, 2: 59, 3: 88, 4: 105, 5: 114, 6: 114,
+        7: 114, 8: 114, 9: 114, 10: 114, 11: 114, 12: 114
     };
     const impCumulative = {
-        1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0,
-        7: 17, 8: 34, 9: 35, 10: 53, 11: 72, 12: 91, 13: 109, 14: 123
+        1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 9,
+        7: 13, 8: 21, 9: 29, 10: 37, 11: 45, 12: 52
     };
     
     const totalCurrent = devCumulative[currentWeek] + impCumulative[currentWeek];
@@ -1544,7 +1456,7 @@
         document.querySelectorAll('.val-current-week').forEach(el => el.innerHTML = currentWeek);
         document.querySelectorAll('.lbl-activities-upto').forEach(el => el.innerHTML = 'Actividades hasta S' + currentWeek);
         document.querySelectorAll('.val-activities-upto').forEach(el => el.innerHTML = totalCurrent);
-        const percentage = Math.round((totalCurrent / 262) * 100);
+        const percentage = Math.round((totalCurrent / 166) * 100);
         document.querySelectorAll('.val-percentage').forEach(el => el.innerHTML = percentage + '%');
     }
 
