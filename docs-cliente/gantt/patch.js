@@ -4,7 +4,7 @@ const files = ['gantt_desarrollo.html', 'gantt_implementacion.html', 'index.html
 
 files.forEach(file => {
     let content = fs.readFileSync(file, 'utf8');
-    
+
     if (content.includes('const sectionWeeks = {};')) {
         console.log(`File ${file} already patched.`);
         return;
@@ -25,7 +25,7 @@ files.forEach(file => {
             currentSection = null;
             ROWS.forEach(row => {`);
 
-    content = content.replace(/tr\.innerHTML = `<td colspan="9"><span class="sec-toggle">▾<\/span>\$\{sec\.label\}<\/td>`;/g, 
+    content = content.replace(/tr\.innerHTML = `<td colspan="9"><span class="sec-toggle">▾<\/span>\$\{sec\.label\}<\/td>`;/g,
         `const tdLabel = document.createElement('td');
                     tdLabel.colSpan = 3;
                     tdLabel.innerHTML = \`<span class="sec-toggle">▾</span>\${sec.label}\`;
@@ -43,7 +43,7 @@ files.forEach(file => {
                         tr.appendChild(td);
                     }`);
 
-    content = content.replace(/tr\.innerHTML = `<td colspan="11"><span class="sec-toggle">▾<\/span>\$\{sec\.label\}<\/td>`;/g, 
+    content = content.replace(/tr\.innerHTML = `<td colspan="11"><span class="sec-toggle">▾<\/span>\$\{sec\.label\}<\/td>`;/g,
         `const tdLabel = document.createElement('td');
                     tdLabel.colSpan = 3;
                     tdLabel.innerHTML = \`<span class="sec-toggle">▾</span>\${sec.label}\`;

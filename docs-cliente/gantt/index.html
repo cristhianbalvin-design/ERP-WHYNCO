@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -1712,7 +1712,7 @@
                 <div class="header-inner">
                     <div>
                         <h1 class="page-title" id="main-title" style="font-size:18px;font-weight:700;color:#fff;">Gantt de Implementación — TIDEO OPERA</h1>
-                        <div class="page-subtitle" id="main-subtitle" style="font-size:12px;color:#7A9CC0;margin-top:4px;">Cliente: DIFESMAQ · 15 de Junio – 9 de Agosto 2026 · 8 semanas · 123 actividades</div>
+                        <div class="page-subtitle" id="main-subtitle" style="font-size:12px;color:#7A9CC0;margin-top:4px;">Cliente: ZAHORY · 15 de Junio – 9 de Agosto 2026 · 8 semanas · 123 actividades</div>
                     </div>
                     <div style="text-align: right;">
                         <div style="font-size: 11px; color: #7A9CC0; margin-bottom: 2px;">Emitido: 17 Jun 2026</div>
@@ -2155,11 +2155,11 @@
             
             if(viewName === 'desarrollo') {
                 titleEl.textContent = 'Gantt de Desarrollo — TIDEO OPERA';
-                subEl.textContent = 'Cliente: DIFESMAQ · 04 de Mayo – 14 de Junio 2026 · 6 semanas · 139 actividades';
+                subEl.textContent = 'Cliente: ZAHORY · 04 de Mayo – 14 de Junio 2026 · 6 semanas · 139 actividades';
                 if (window.renderGanttDev) window.renderGanttDev(); 
             } else {
                 titleEl.textContent = 'Gantt de Implementación — TIDEO OPERA';
-                subEl.textContent = 'Cliente: DIFESMAQ · 15 de Junio – 9 de Agosto 2026 · 8 semanas · 123 actividades';
+                subEl.textContent = 'Cliente: ZAHORY · 15 de Junio – 9 de Agosto 2026 · 8 semanas · 123 actividades';
                 if (window.renderGanttImp) window.renderGanttImp();
             }
         }
@@ -2295,7 +2295,7 @@
             { id: 71, label: 'Corrección: registrarEntradaDesdeRecepcion agrega codigo y material_id al mapeo de items', type: 'FIX', weeks: [0, 0, 0, 1, 0, 0] },
 
             { section: 'SEC_OP1' },
-            { id: 72, label: 'Investigación: levantamiento del flujo operativo de DIFESMAQ en minería subterránea con equipos LHD Caterpillar', type: 'OP', weeks: [0, 0, 0, 1, 0, 0] },
+            { id: 72, label: 'Investigación: levantamiento del flujo operativo de ZAHORY en minería subterránea con equipos LHD Caterpillar', type: 'OP', weeks: [0, 0, 0, 1, 0, 0] },
             { id: 73, label: 'Investigación: mapeo del ciclo completo desde la falla del equipo hasta el cierre y la liquidación al contrato', type: 'OP', weeks: [0, 0, 0, 1, 0, 0] },
             { id: 74, label: 'Investigación: modelo DBS (Tipo de Trabajo × Cargo Financiero) e indicadores de confiabilidad DMR, MTBF, MTTR, OEE', type: 'OP', weeks: [0, 0, 0, 1, 0, 0] },
             { id: 75, label: 'Fase 1: Dashboard Gerencial Operativo con KPIs en tiempo real, alertas e indicadores de flota', type: 'OP', weeks: [0, 0, 0, 1, 0, 0] },
@@ -2375,7 +2375,7 @@
             { section: 'SEC_AUDIT' },
             { id: 136, label: 'Auditoría técnica 14/06: cruce de pages_*.jsx, context.jsx, services/*.js y supabase/migrations → 242 migraciones confirmadas', type: 'AUDIT', weeks: [0, 0, 0, 0, 0, 1] },
             { id: 137, label: 'Auditoría técnica 16/06: corte final a 253 migraciones, identificación de implementaciones no documentadas previamente', type: 'AUDIT', weeks: [0, 0, 0, 0, 0, 1] },
-            { id: 138, label: 'Validación inicial de pantallas del ERP Administrativo con usuarios de DIFESMAQ (CRM, RRHH, Compras, Logística, Almacén, Finanzas)', type: 'AUDIT', weeks: [0, 0, 0, 0, 0, 1] },
+            { id: 138, label: 'Validación inicial de pantallas del ERP Administrativo con usuarios de ZAHORY (CRM, RRHH, Compras, Logística, Almacén, Finanzas)', type: 'AUDIT', weeks: [0, 0, 0, 0, 0, 1] },
             { id: 139, label: 'HITO: 48 pantallas ERP Operativo completas · ~74 módulos ERP Administrativo · Validación inicial realizada · Desarrollo cerrado', type: 'HITO', weeks: [0, 0, 0, 0, 0, 1] },
         ];
 
@@ -2604,9 +2604,9 @@
         const ROWS = [
             // ── SEMANA 7 (15–19 Jun) ─────────────────────────────────────────────────
             { section: 'SEC_S1_SETUP' },
-            { id: 1, label: 'Creación del tenant de DIFESMAQ en el sistema', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 1, label: 'Creación del tenant de ZAHORY en el sistema', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
             { id: 2, label: 'Configuración de empresa: razón social, RUC, logo y moneda', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
-            { id: 3, label: 'Creación de usuarios y contraseñas del equipo DIFESMAQ', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
+            { id: 3, label: 'Creación de usuarios y contraseñas del equipo ZAHORY', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
             { id: 4, label: 'Configuración de roles y permisos por área y cargo', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
             { id: 5, label: 'Carga del organigrama y estructura de cargos', type: 'CARGA', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
             { id: 6, label: 'Configuración de turnos y horarios reales de la empresa', type: 'CONFIG', weeks: [1, 0, 0, 0, 0, 0, 0, 0] },
@@ -2734,7 +2734,7 @@
 
             // ── SEMANA 8 (3–9 Ago) ───────────────────────────────────────────────────
             { section: 'SEC_S8_HSE' },
-            { id: 110, label: 'Configuración de protocolos HSE propios de DIFESMAQ', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 110, label: 'Configuración de protocolos HSE propios de ZAHORY', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
             { id: 111, label: 'Carga de plantillas PETAR y ATS según operaciones del cliente', type: 'CARGA', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
             { id: 112, label: 'Validación: Dashboard HSE', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
             { id: 113, label: 'Validación: Permisos de Trabajo en Alto Riesgo (PETAR)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
@@ -2746,8 +2746,8 @@
             { id: 119, label: 'Validación del flujo completo: Backlog → OT → Parte → Cierre → Liquidación → Valorización → Factura', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
             { id: 120, label: 'Validación en dispositivo móvil (técnicos y personal de campo)', type: 'VALID', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
             { id: 121, label: 'Configuración final de usuarios, accesos y contraseñas del cliente', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 122, label: 'Entrega de manual de usuario y sesión de capacitación final con DIFESMAQ', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
-            { id: 123, label: 'HITO: TIDEO OPERA COMPLETO EN PRODUCCIÓN — ENTREGADO A DIFESMAQ', type: 'HITO', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 122, label: 'Entrega de manual de usuario y sesión de capacitación final con ZAHORY', type: 'CONFIG', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
+            { id: 123, label: 'HITO: TIDEO OPERA COMPLETO EN PRODUCCIÓN — ENTREGADO A ZAHORY', type: 'HITO', weeks: [0, 0, 0, 0, 0, 0, 0, 1] },
         ];
 
         // ── BUILD TABLE ────────────────────────────────────────────────────────────
