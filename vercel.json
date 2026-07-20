@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/docs-cliente/gantt/index.html",
+      "permanent": false
+    }
+  ]
+}
