@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/docs-cliente/gantt/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/docs-cliente/gantt/$1"
     }
