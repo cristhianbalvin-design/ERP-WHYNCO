@@ -1,9 +1,8 @@
 {
-  "redirects": [
+  "rewrites": [
     {
-      "source": "/",
-      "destination": "/docs-cliente/gantt/index.html",
-      "permanent": false
+      "source": "/(.*)",
+      "destination": "/docs-cliente/gantt/$1"
     }
   ]
 }
