@@ -1,0 +1,7 @@
+{
+  "name": "erp-whynco",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "mkdir -p dist build public && cp -r docs-cliente index.html dist/ && cp -r docs-cliente index.html build/ && cp -r docs-cliente index.html public/"
+  }
+}
